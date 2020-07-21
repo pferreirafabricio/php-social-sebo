@@ -1,0 +1,6 @@
+/* Color Theme Swatches in Hex */
+$Social-Sebo-1-hex: #FF4D2E;
+$Social-Sebo-2-hex: #FFED61;
+$Social-Sebo-3-hex: #FF6347;
+$Social-Sebo-4-hex: #2EFFA4;
+$Social-Sebo-5-hex: #5F3BFF;
