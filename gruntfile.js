@@ -2,8 +2,8 @@ module.exports = function (grunt) {
   grunt.initConfig({
     uglify: {
       files: {
-        src: 'public/assets/js/src/*.js',
-        dest: 'public/assets/js/min/',
+        src: 'views/assets/js/src/*.js',
+        dest: 'views/assets/js/min/',
         expand: true,
         flatten: true,
         ext: '.min.js',
@@ -11,7 +11,7 @@ module.exports = function (grunt) {
     },
     watch: {
       js: {
-        files: 'public/assets/js/src/*.js',
+        files: 'views/assets/js/src/*.js',
         tasks: ['uglify'],
       },
     },
