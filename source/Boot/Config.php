@@ -12,6 +12,11 @@ define('DATE_TIME', 'd/m/Y H:i:s');
 define('BASE', '/php-socialSebo/');
 
 /**
+ * Number of indexes to remove
+ */
+define('INDEXES_TO_REMOVE', 1);
+
+/**
  * The host of the project
  */
 define('HOST', 'http://localhost/php-socialSebo/');
