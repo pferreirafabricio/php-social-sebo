@@ -2,7 +2,7 @@
     <div class="logo my-2">
         <img
             height="40px"
-            src="{{BASE}}/assets/img/logo.png" 
+            src="{{BASE}}assets/img/logo.png" 
             alt="Social Sebo's logo"
         >
         Copyright © 2020 Social Sebo. All rights reserved.
