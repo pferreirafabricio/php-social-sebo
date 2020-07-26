@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %} | Social Sebo</title>
+    <link href='https://css.gg/css' rel='stylesheet'>
     <link rel="stylesheet" href="{{BASE}}/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="{{BASE}}/assets/css/main.css" />
+    <link rel="shortcut icon" href="{{BASE}}/assets/img/logo.ico" type="image/x-icon">
 </head>
 <body>
     {% include 'partials/header.twig.php' %}
