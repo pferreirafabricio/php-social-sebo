@@ -4,7 +4,7 @@
 {% block body %}
   <div class="">
     <h1 class="display-3 mb-4">Login</h1>
-    <form>
+    <form method="POST" action="{{BASE}}login/auth" id="frmLogin">
         <fieldset>
             <div class="form-group">
                 <label class="form-control-label" for="email">
@@ -59,12 +59,16 @@
                 <button type="submit" class="btn btn-primary w-25">
                     Login
                 </button>
-                <a type="button" class="btn btn-outline-secondary" href="#">
+                <a 
+                    type="button" 
+                    class="btn btn-outline-secondary" 
+                    href="{{BASE}}/login/register"
+                >
                     Register
                 </a>
                 <a 
                     class="float-right no-text-decoration orange-hover" 
-                    href="#"
+                    href="{{BASE}}/login/forgot"
                 >
                     Forgot my password
                 </a>
@@ -72,4 +76,8 @@
         </fieldset>
     </form>
   </div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{BASE}}assets/js/src/login.js"></script>
 {% endblock %}

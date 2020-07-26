@@ -1,4 +1,12 @@
-function ff() {
-  console.log('hi');
+import {
+  validateEmail,
+  validatePassword 
+} from './validations.js';
+
+function getElementById(id) {
+  return document.getElementById(id);
 }
-console.log('hi');
+
+function getValueById(id) {
+  return document.getElementById(id).value;
+}

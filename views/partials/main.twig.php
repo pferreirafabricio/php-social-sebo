@@ -17,6 +17,8 @@
     </main>
     
     {% include 'partials/footer.twig.php' %}
+    
+    <script type="module" src="{{BASE}}assets/js/src/index.js"></script>
     {% block scripts %}{% endblock %}
 </body>
 </html>
