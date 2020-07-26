@@ -24,10 +24,11 @@
                         </div>
                         <input 
                             type="email" 
-                            class="form-control is-invalid" 
+                            class="form-control" 
                             id="email"
                             name="email"
                             placeholder="youremail@domain.com"
+                            required
                         >
                         <span class="invalid-feedback">
                             We'll never share your email with anyone else.
@@ -48,14 +49,13 @@
                         </div>
                         <input 
                             type="password" 
-                            class="form-control is-valid" 
+                            class="form-control" 
                             id="password" 
                             name="password" 
                             placeholder="*********"
+                            required
                         >
-                        <span class="valid-feedback">
-                            Success! You've done it.
-                        </span>
+                        <span class="invalid-feedback"></span>
                     </div>
                 </div>
             </div>
