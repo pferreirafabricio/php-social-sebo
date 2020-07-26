@@ -1,4 +1,9 @@
 /* eslint-disable no-restricted-syntax */
+import {
+  validateEmail,
+  validatePassword,
+} from './validations.js';
+
 document.addEventListener('DOMContentLoaded', () => {
   const elForm = document.forms.frmLogin;
   const fields = document.querySelectorAll('[required]');
@@ -13,11 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
 
-      // const filedType = field.type;
-
-      // if (filedType === 'password' && validatePassword(field.value)) {
-
-      // }
+      if (!foundErrors) {
+        if (field.type === 'password' && !validatePassword(field.value)) {
+          foundErrors = 'typeMismatch';
+        } else if (field.type === 'email' && !validateEmail(field.value)) {
+          foundErrors = 'typeMismatch';
+        }
+      }
 
       return foundErrors;
     }
@@ -26,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const messages = {
         password: {
           valueMissing: 'Please, fill the password field',
+          typeMismatch: 'Please, type a valid password',
         },
         email: {
           valueMissing: 'Please, fill the email field',

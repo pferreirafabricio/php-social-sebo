@@ -84,5 +84,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="{{BASE}}assets/js/src/login.js"></script>
+<script type="module" src="{{BASE}}assets/js/src/login.js"></script>
 {% endblock %}
