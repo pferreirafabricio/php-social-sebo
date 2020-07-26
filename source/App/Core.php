@@ -45,7 +45,7 @@ class Core
      */
     private function getController()
     {
-        $controllerName = 'Web';
+        $controllerName = 'Home';
         if (isset($this->uri[0])) {
             $controllerName = ucfirst($this->uri[0]);
         }
@@ -65,7 +65,7 @@ class Core
      */
     private function getMethod()
     {
-        $methodName = 'home';
+        $methodName = 'index';
         if (isset($this->uri[1])) {
             $methodName = $this->uri[1];
         }
