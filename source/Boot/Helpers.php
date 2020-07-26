@@ -36,6 +36,17 @@ function post(string $param, $filter = FILTER_SANITIZE_STRING)
 }
 
 /**
+ * Get all variables sents in request
+ *
+ * @param  array $filter Filters to be applied in the data
+ * @return mixed
+ */
+function postAll(array $filter = []) 
+{
+    return filter_input_array(INPUT_POST, $filter);
+}
+
+/**
  * Gets the current date
  * 
  * @param string $dateFormat Format to date be parsed

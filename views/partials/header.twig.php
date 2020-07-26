@@ -3,7 +3,7 @@
     <a class="navbar-brand" href="#" aria-label="Social Sebo's logo">
         <img
             height="40px"
-            src="{{BASE}}/assets/img/logo.png" 
+            src="{{BASE}}assets/img/logo.png" 
             alt="Social Sebo's logo"
         >
     </a>

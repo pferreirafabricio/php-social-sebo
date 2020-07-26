@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{BASE}}assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="{{BASE}}assets/css/main.css" />
     {% block styles %}{% endblock %}
-    <link rel="shortcut icon" href="{{BASE}}/assets/img/logo.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="{{BASE}}assets/img/logo.ico" type="image/x-icon">
 </head>
 <body>
     {% include 'partials/header.twig.php' %}

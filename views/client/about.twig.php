@@ -5,7 +5,7 @@
 <div>
     <h1>About Us</h1>
     <img
-        src="{{BASE}}/assets/img/logo-fullsize.png" 
+        src="{{BASE}}assets/img/logo-fullsize.png" 
         alt="Social Sebo's logo"
         class="float-left mr-3"
     >

@@ -8,8 +8,25 @@
 
 {% block body %}
   <div class="">
-    <h1 class="display-3 mb-4">Login</h1>
-    <form method="POST" action="{{BASE}}login/auth" id="frmLogin">
+    <h1 class="display-3 mb-4">Register</h1>
+    <form method="POST" action="{{BASE}}login/register" id="frmRegister">
+        <fieldset> 
+            <div class="form-group">
+                <label class="form-control-label" for="name">
+                    Name
+                </label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    id="name"
+                    name="name"
+                    placeholder="Ex: Brayan Jenkis"
+                    required
+                    autofocus
+                >
+                <span class="invalid-feedback"></span>
+            </div>
+        </fieldset>
         <fieldset>
             <div class="form-group">
                 <label class="form-control-label" for="email">
@@ -33,7 +50,6 @@
                         <span class="invalid-feedback"></span>
                     </div>
                 </div>
-                
             </div>
 
             <div class="form-group">
@@ -60,24 +76,55 @@
                 </div>
             </div>
 
+            <div class="form-group">
+                <label class="form-control-label" for="confirmPassword">
+                   Confirm Password
+                </label>
+                <div class="form-group">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="gg-keyhole"></i>
+                            </span>
+                        </div>
+                        <input 
+                            type="password" 
+                            class="form-control" 
+                            id="confirmPassword" 
+                            name="confirmPassword" 
+                            placeholder="*********"
+                            required
+                        >
+                        <span class="invalid-feedback"></span>
+                    </div>
+                </div>
+            </div>
+
             <div class="btn-actions">
                 <div>
                     <button type="submit" class="btn btn-primary">
-                        Login
-                    </button>
-                    <a 
-                        type="button" 
-                        class="btn btn-outline-secondary" 
-                        href="{{BASE}}login/register"
-                    >
                         Register
-                    </a>
+                    </button>
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input 
+                                type="checkbox" 
+                                class="custom-control-input" 
+                                id="customCheck1" 
+                                checked=""
+                            >
+                            <label class="custom-control-label" for="customCheck1">
+                                I read and accept the 
+                                <a class="orange-hover" href="#">use terms</a>. 
+                            </label>
+                        </div>
+                    </div>
                 </div>
                 <a 
                     class="forgot-password no-text-decoration orange-hover" 
-                    href="{{BASE}}login/forgot"
+                    href="{{BASE}}login"
                 >
-                    Forgot my password
+                   I've had an account
                 </a>
             </div>
         </fieldset>
@@ -86,5 +133,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script type="module" src="{{BASE}}assets/js/src/login.js"></script>
+<script type="module" src="{{BASE}}assets/js/src/register.js"></script>
 {% endblock %}
