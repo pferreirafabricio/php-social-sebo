@@ -39,7 +39,9 @@
             </div>
 
             <div class="form-group">
-                <label for="password">Password</label>
+                <label class="form-control-label" for="password">
+                    Password
+                </label>
                 <div class="form-group">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
@@ -60,19 +62,21 @@
                 </div>
             </div>
 
-            <div>
-                <button type="submit" class="btn btn-primary w-25">
-                    Login
-                </button>
+            <div class="btn-actions">
+                <div>
+                    <button type="submit" class="btn btn-primary">
+                        Login
+                    </button>
+                    <a 
+                        type="button" 
+                        class="btn btn-outline-secondary" 
+                        href="{{BASE}}/login/register"
+                    >
+                        Register
+                    </a>
+                </div>
                 <a 
-                    type="button" 
-                    class="btn btn-outline-secondary" 
-                    href="{{BASE}}/login/register"
-                >
-                    Register
-                </a>
-                <a 
-                    class="float-right no-text-decoration orange-hover" 
+                    class="forgot-password no-text-decoration orange-hover" 
                     href="{{BASE}}/login/forgot"
                 >
                     Forgot my password

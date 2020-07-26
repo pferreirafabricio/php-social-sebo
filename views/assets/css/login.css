@@ -1,3 +1,28 @@
-input + span {
-   /* background-color: brown; */
+.btn-actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.btn-actions .forgot-password {
+    float: right;
+}
+
+
+@media screen and (max-width: 990px) {
+    .btn-actions {
+        flex-direction: column;
+    }
+
+    .btn-actions div {
+       width: 100%;
+    }
+
+    .btn-actions a,
+    .btn-actions button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
 }
