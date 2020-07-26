@@ -1,22 +1,22 @@
 <?php 
 
 namespace Source\App;
+use Source\App\Controller;
 
-class WebController 
+class WebController extends Controller
 {
     public function __construct()
     {
-        $this->home();
     }
     
     /**
-     * home
+     * Render the home view
      *
      * @return void
      */
     public function home(): void
     {
-        echo 'Home from web controller';
+        echo $this->view('client/home');
     }
     
     /**
