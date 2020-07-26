@@ -12,7 +12,7 @@
 <body>
     {% include 'partials/header.twig.php' %}
 
-    <main>
+    <main class="container py-4">
         {% block body %}{% endblock %}
     </main>
     

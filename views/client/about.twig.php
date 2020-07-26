@@ -2,7 +2,7 @@
 {% block title %}About Us{% endblock %}
 
 {% block body %}
-<div class="container py-4">
+<div>
     <h1>About Us</h1>
     <img
         src="{{BASE}}/assets/img/logo-fullsize.png" 

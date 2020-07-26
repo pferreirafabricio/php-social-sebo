@@ -22,3 +22,11 @@
 body {
     font-family: 'Ubuntu', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+.no-text-decoration {
+    text-decoration: none !important;
+}
+
+.orange-hover:hover {
+    color: var(--orange);
+}
