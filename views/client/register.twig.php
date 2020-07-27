@@ -9,7 +9,7 @@
 {% block body %}
   <div class="">
     <h1 class="display-3 mb-4">Register</h1>
-    <form method="POST" action="{{BASE}}login/register" id="frmRegister">
+    <form method="POST" action="{{BASE}}user/create" id="frmRegister">
         <fieldset> 
             <div class="form-group">
                 <label class="form-control-label" for="name">
