@@ -27,15 +27,16 @@ class Controller
      * Render a error screen
      *
      * @param  string $title Title of the screen
-     * @param  string $message Message for the user
+     * @param  string $errors Errors to be displayed for the user
      * @return void
      */
-    protected function error(string $title, string $message, int $statusCode)
+    protected function error(string $title, array $errors, int $statusCode = 400)
     {
         http_response_code($statusCode);
         $this->view('partials/messages/error', [
             'title' => $title,
-            'message' => $message,
+            'errors' => $errors,
+            'errorCode' => $statusCode,
         ]);
     }
 }
