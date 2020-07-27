@@ -1,6 +1,6 @@
 <?php
 
-namespace app\core;
+namespace Source\Database;
 
 use PDO;
 /**
@@ -10,7 +10,7 @@ use PDO;
  *
  * @author Victor Tassinari - victortassinarix@gmail.com
  */
-class Model
+class BasePDO
 {
     private static $connection;
 
