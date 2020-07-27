@@ -5,7 +5,7 @@
  * 
  * @param $variable Variable to be formated
  */
-function dd($variable = [])
+function dd($variable = []): void
 {
     echo '<pre>';
     print_r($variable);
@@ -41,7 +41,7 @@ function post(string $param, $filter = FILTER_SANITIZE_STRING)
  * @param  array $filter Filters to be applied in the data
  * @return mixed
  */
-function postAll(array $filter = []) 
+function postAll(array $filter = [])
 {
     return filter_input_array(INPUT_POST, $filter);
 }
@@ -50,9 +50,9 @@ function postAll(array $filter = [])
  * Gets the current date
  * 
  * @param string $dateFormat Format to date be parsed
- * @return DateTime
+ * @return string
  */
-function getCurrentDate(string $dateFormat = 'Y-m-d H:i:s')
+function getCurrentDate(string $dateFormat = 'Y-m-d H:i:s'): string
 {
     return date($dateFormat);
 }
@@ -62,7 +62,18 @@ function getCurrentDate(string $dateFormat = 'Y-m-d H:i:s')
  * 
  * @param string $url URL to which the user will be redirected to
  */
-function redirect(string $url)
+function redirect(string $url): void
 {
     header('Location: ' . $url);
+}
+
+/**
+ * Hash a password
+ * 
+ * @param string $password Password to be encrypted
+ * @return string
+ */
+function passwordHash(string $password): string
+{
+    return password_hash($password, PASSWORD_DEFAULT);
 }
