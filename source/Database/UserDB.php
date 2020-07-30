@@ -28,4 +28,21 @@ class UserDB extends BasePDO
 
         return $this->pdo->ExecuteNonQuery($sql, $params);
     }
+
+    public function verifyIfEmailExists(string $email): bool
+    {
+        $sql = "SELECT id FROM usuario WHERE email = :email";
+
+        $params = [
+            'email' => $email
+        ];
+
+        $dataReader = $this->pdo->ExecuteQueryOneRow($sql, $params);
+
+        if (isset($dataReader['id'])) {
+            return true;
+        }
+
+        return false;
+    }
 }

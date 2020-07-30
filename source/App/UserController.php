@@ -46,11 +46,21 @@ class UserController extends Controller
 
         $user->setPassword(passwordHash($user->getPassword()));
 
+        if ($this->userDB->verifyIfEmailExists($user->getEmail())) {
+            echo $this->error('This email already exists!', [
+                "The given email is already in use by another user"
+            ] , 500);
+            die();
+        }
+
         if (!$this->userDB->insert($user)) {
             echo $this->error('User register failed!', [
                 "Something was wrong on user registration, please try again in 5 minutes"
             ] , 500);
-        }        
+            die();
+        }
+        
+        // Create view for success messages
     }
     
     /**
