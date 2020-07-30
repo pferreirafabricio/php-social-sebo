@@ -15,5 +15,8 @@
 		"psr-4":  {
 			"Source\\" : "source/"
 		}
-	}
+	},
+    "require-dev": {
+        "phpunit/phpunit": "^9.2"
+    }
 }
