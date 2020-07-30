@@ -34,7 +34,7 @@ define('DB_USER', 'root');
 /**
  * The password for access database
  */
-define('DB_PASSWORD', '');
+define('DB_PASSWORD', 'cadeira12');
 
 /**
  * The schema name in database of the project

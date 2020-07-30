@@ -4,9 +4,18 @@ namespace Source\App;
 
 use Source\App\Controller;
 use Source\Models\User;
+use Source\Database\UserDB;
 
 class UserController extends Controller
 {
+    private $userDB;
+
+    public function __construct()
+    {
+        $this->userDB = new UserDB();
+    }
+
+
     public function create(): void
     {
         $filters = [
@@ -15,7 +24,7 @@ class UserController extends Controller
             'password' => FILTER_SANITIZE_STRING,
             'confirmPassword' => FILTER_SANITIZE_STRING,
         ];
-        
+
         $data = postAll($filters);
         $data = array_map('strip_tags', $data);
         $data =  array_map('trim', $data);
@@ -31,15 +40,17 @@ class UserController extends Controller
 
         $errors = $this->validate($user);
 
-        if ($errors === []) {
-            $user->setPassword(passwordHash($user->getPassword()));
-            dd($user);
-            //$user->insert($user);
-            dd('Can insert');
-        } else {
+        if ($errors !== []) {
             echo $this->error('Form data invalid!', $errors, 400);
-            dd("Can't insert");
         }
+
+        $user->setPassword(passwordHash($user->getPassword()));
+
+        if (!$this->userDB->insert($user)) {
+            echo $this->error('User register failed!', [
+                "Something was wrong on user registration, please try again in 5 minutes"
+            ] , 500);
+        }        
     }
     
     /**
@@ -68,5 +79,23 @@ class UserController extends Controller
         //     $errors[] = 'Password must be equals is invalid';
             
         return $errors;
+    }
+    
+    /**
+     * Create a User object with data sent
+     *
+     * @return User
+     */
+    private function getInput(int $id = null): User
+    {
+        return new User(
+            filter_var($id, FILTER_VALIDATE_INT),
+            post('name'),
+            post('email'),
+            post('password'),
+            post('confirmPassword'),
+            1,
+            null
+        );
     }
 }

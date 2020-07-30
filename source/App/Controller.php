@@ -30,7 +30,7 @@ class Controller
      * @param  string $errors Errors to be displayed for the user
      * @return void
      */
-    protected function error(string $title, array $errors, int $statusCode = 400)
+    protected function error(string $title, array $errors = [], int $statusCode = 400)
     {
         http_response_code($statusCode);
         $this->view('partials/messages/error', [

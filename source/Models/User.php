@@ -4,7 +4,7 @@ namespace Source\Models;
 
 use Source\Models\Model;
 
-class User extends Model 
+class User
 {   
     private $id;
     private $nome;
@@ -13,7 +13,7 @@ class User extends Model
     private $status;
     private $token;
 
-    public function __construct($id, $nome, $email, $senha, $status = 2, $token = null)
+    public function __construct(int $id = null, string $nome = '', string $email = '', string $senha, int $status = 2, string $token = null)
     {
         $this->nome = $nome;
         $this->email = strtolower($email);

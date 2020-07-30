@@ -13,6 +13,7 @@
             Oopss! Error {{errorCode}}
         </h1>
         <h2>{{ title }}</h2>
+        {% if errors != [] %}
         <div class="mb-5">
             {% for error in errors %}
                 <p class="d-flex align-items-center justify-content-center"> 
@@ -21,9 +22,10 @@
                 </p>
             {% endfor %}
         </div>
+        {% endif %}
         
         <a 
-            class="btn btn-primary btn-lg text-white"
+            class="btn btn-primary btn-lg text-white mt-5"
             href="{{BASE}}"
         >
             <i class="gg-home d-inline-block mr-2"></i> Back to home

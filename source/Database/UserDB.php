@@ -3,9 +3,9 @@
 namespace Source\Database;
 
 use Source\Database\BasePDO;
-use Source\Models\User as UserModel;
+use Source\Models\User;
 
-class User extends BasePDO 
+class UserDB extends BasePDO 
 {
     private $pdo;
 
@@ -14,9 +14,9 @@ class User extends BasePDO
         $this->pdo = new BasePDO();
     }
 
-    public function insert(UserModel $user): void
+    public function insert(User $user): bool
     {
-        $sql = 'INSERT INTO usuario(id, nome, email, senha, status)
+        $sql = 'INSERT INTO usuario(nome, email, senha, status)
                 VALUES(:name, :email, :password, :status)';
 
         $params = [
@@ -26,6 +26,6 @@ class User extends BasePDO
             'status' => $user->getStatus(),
         ];
 
-        $this->pdo->ExecuteNonQuery($sql, $params);
+        return $this->pdo->ExecuteNonQuery($sql, $params);
     }
 }

@@ -34,11 +34,6 @@
                 </label>
                 <div class="form-group">
                     <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">
-                                <i class="gg-mail"></i>
-                            </span>
-                        </div>
                         <input 
                             type="email" 
                             class="form-control" 
@@ -58,11 +53,6 @@
                 </label>
                 <div class="form-group">
                     <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">
-                                <i class="gg-keyhole"></i>
-                            </span>
-                        </div>
                         <input 
                             type="password" 
                             class="form-control" 
@@ -82,11 +72,6 @@
                 </label>
                 <div class="form-group">
                     <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">
-                                <i class="gg-keyhole"></i>
-                            </span>
-                        </div>
                         <input 
                             type="password" 
                             class="form-control" 
