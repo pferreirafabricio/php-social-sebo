@@ -61,6 +61,7 @@ class UserController extends Controller
         }
         
         // Create view for success messages
+        echo $this->success("User create successfully!", 200, 'login');
     }
     
     /**
