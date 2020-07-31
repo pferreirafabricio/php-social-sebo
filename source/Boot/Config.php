@@ -12,6 +12,11 @@ define('DATE_TIME', 'd/m/Y H:i:s');
 define('BASE', '/php-socialSebo/');
 
 /**
+ * The directory for redirect unauthorizated access
+ */
+define('SECURITY_REDIRECT', '/php-socialSebo/');
+
+/**
  * Number of indexes to remove
  */
 define('INDEXES_TO_REMOVE', 1);

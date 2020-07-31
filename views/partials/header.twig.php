@@ -23,6 +23,20 @@
                 <a class="nav-link" href="{{BASE}}about/">About us</a>
             </li>
         </ul>
+        {% if userName == null %}
+            <div>
+                <a class="btn btn-outline-danger" href="{{BASE}}login/">
+                    Log In
+                </a>
+            </div>
+        {% else %}
+            <div>
+                <a class="text-danger" href="{{BASE}}dashboard/">
+                    {{userName}}
+                </a>
+                <!-- <i class="gg-arrow-left-o "></i> -->
+            </div>
+        {% endif %}
     </div>
     </nav>
 </header>
