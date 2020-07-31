@@ -3,9 +3,11 @@
 namespace Source\App;
 
 use Source\App\Controller;
+use Source\Database\UserDB;
+use Source\Classes\Session;
 
 class LoginController extends Controller
-{
+{   
     #region External
 
     public function index(): void
@@ -24,13 +26,32 @@ class LoginController extends Controller
 
     public function auth(): void 
     {
-        $filters = [
-            'email' => FILTER_SANITIZE_STRING,
-            'password' => FILTER_SANITIZE_STRING,
-        ];
+        $email = trim(post('email', FILTER_SANITIZE_EMAIL));
+        $password = post('password');
+        
+        $user = (new UserDB())->getUserByEmail($email);
 
-        dd(postAll($filters));
+        if (!$user) {
+            echo $this->error("Email incorrect!", [], 400, "login");
+        }
+
+        if (!password_verify($password, $user->getPassword())) {
+            echo $this->error("Password incorrect!", [], 400, "login");
+        }
+        
+        $userName = explode(' ', $user->getName());
+
+        Session::setValue('id', $user->getId());
+        Session::setValue('name', mb_substr($userName[0], 0, strlen($userName[0])));
+        Session::setValue('ip', $_SERVER['REMOTE_ADDR']);
+        Session::setValue('logged', true);
+
+        redirect(BASE . 'dashboard/');
     }
 
-    
+    public function logout(): void
+    {
+        Session::destroy();
+        redirect(BASE . 'login/');
+    }
 }
