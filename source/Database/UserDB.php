@@ -20,10 +20,10 @@ class UserDB extends BasePDO
                 VALUES(:name, :email, :password, :status)';
 
         $params = [
-            'name' =>  $user->getName(),
-            'email' => $user->getEmail(),
-            'password' => $user->getPassword(),
-            'status' => $user->getStatus(),
+            ':name' =>  $user->getName(),
+            ':email' => $user->getEmail(),
+            ':password' => $user->getPassword(),
+            ':status' => $user->getStatus(),
         ];
 
         return $this->pdo->ExecuteNonQuery($sql, $params);
@@ -34,7 +34,7 @@ class UserDB extends BasePDO
         $sql = "SELECT id FROM usuario WHERE email = :email";
 
         $params = [
-            'email' => $email
+            ':email' => $email
         ];
 
         $dataReader = $this->pdo->ExecuteQueryOneRow($sql, $params);
@@ -44,5 +44,37 @@ class UserDB extends BasePDO
         }
 
         return false;
+    }
+
+    public function getUserByEmail(string $email)
+    {
+        $sql = "SELECT id, nome, email, senha, status
+                  FROM usuario
+                 WHERE email = :email 
+                   AND status = :status";
+
+        $params = [
+            ':email' => $email,
+            ':status' => 1
+        ];
+            
+        $dataReader = $this->pdo->ExecuteQueryOneRow($sql, $params);
+
+        if (!$dataReader)
+            return false;
+
+        return $this->collection($dataReader);
+    }
+
+    private function collection($data): User
+    {
+        return new User(
+            $data['id'] ?? null,
+            $data['nome'] ?? null,
+            $data['email'] ?? null,
+            $data['senha'] ?? null,
+            $data['status'] ?? null,
+            $data['token'] ?? null,
+        );
     }
 }
