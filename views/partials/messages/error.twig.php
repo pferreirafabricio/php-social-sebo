@@ -26,9 +26,9 @@
         
         <a 
             class="btn btn-primary btn-lg text-white mt-5"
-            href="{{BASE}}"
+            href="{{BASE}}{{redirectTo}}"
         >
-            <i class="gg-home d-inline-block mr-2"></i> Back to home
+            <i class="gg-home d-inline-block mr-2"></i> Back
         </a>
     </div>
 </div>
