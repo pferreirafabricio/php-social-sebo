@@ -1,0 +1,35 @@
+.user-actions {
+    position: relative;
+    cursor: pointer;
+}
+
+.user-actions:hover .actions {
+    display: block;
+}
+
+.actions {
+    display: none;
+    position: absolute;
+    padding-top: 10px;
+}
+
+.actions a {
+    display: block;
+    color: #fff !important;
+}
+
+.actions .action-item {
+    display: flex;
+    align-items: center;
+    background-color: var(--orange);
+    padding: 10px;
+}
+
+.actions .action-item:hover {
+    filter: brightness(0.9);
+}
+
+.actions .action-item i {
+   display: inline-block;
+   margin-right: 10px;
+}
