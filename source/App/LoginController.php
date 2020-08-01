@@ -5,6 +5,7 @@ namespace Source\App;
 use Source\App\Controller;
 use Source\Database\UserDB;
 use Source\Classes\Session;
+use Source\Classes\Security;
 
 class LoginController extends Controller
 {   
@@ -12,12 +13,20 @@ class LoginController extends Controller
 
     public function index(): void
     {
-        echo $this->view('client/login');
+        echo $this->view('client/user/login');
     }
 
     public function register(): void
     {
-        echo $this->view('client/register');
+        echo $this->view('client/user/register');
+    }
+
+    public function edit(): void 
+    {
+        Security::protect();
+        echo $this->view('client/user/edit', [
+            'user' => (new UserDB)->getUserById(2),
+        ]);
     }
 
     #endregion

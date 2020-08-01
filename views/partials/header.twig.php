@@ -39,7 +39,7 @@
                     <a class="action-item no-text-decoration" href="{{BASE}}dashboard/">
                         <i class="gg-keyboard"></i> Dashboard
                     </a>
-                    <a class="action-item no-text-decoration" href="{{BASE}}user/edit">
+                    <a class="action-item no-text-decoration" href="{{BASE}}login/edit">
                         <i class="gg-edit-markup"></i> Edit
                     </a>
                     <a class="action-item no-text-decoration" href="{{BASE}}login/logout">

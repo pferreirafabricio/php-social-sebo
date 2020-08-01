@@ -66,6 +66,24 @@ class UserDB extends BasePDO
         return $this->collection($dataReader);
     }
 
+    public function getUserById(int $id)
+    {
+        $sql = "SELECT nome, email, senha
+                  FROM usuario
+                 WHERE id = :id";
+
+        $params = [
+            ':id' => $id
+        ];
+            
+        $dataReader = $this->pdo->ExecuteQueryOneRow($sql, $params);
+
+        if (!$dataReader)
+            return false;
+
+        return $this->collection($dataReader);
+    }
+
     private function collection($data): User
     {
         return new User(

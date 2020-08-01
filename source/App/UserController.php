@@ -15,7 +15,6 @@ class UserController extends Controller
         $this->userDB = new UserDB();
     }
 
-
     public function create(): void
     {
         $filters = [
