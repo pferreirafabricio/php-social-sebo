@@ -13,8 +13,9 @@ class User
     private $status;
     private $token;
 
-    public function __construct(int $id = null, string $nome = '', string $email = '', string $senha, int $status = 2, string $token = null)
+    public function __construct(int $id, string $nome, string $email, string $senha, int $status = 2, string $token = null)
     {
+        $this->id = $id;
         $this->nome = $nome;
         $this->email = strtolower($email);
         $this->senha = $senha;

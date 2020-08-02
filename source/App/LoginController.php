@@ -25,7 +25,7 @@ class LoginController extends Controller
     {
         Security::protect();
         echo $this->view('client/user/edit', [
-            'user' => (new UserDB)->getUserById(2),
+            'user' => (new UserDB)->getUserById(Session::getValue('id')),
         ]);
     }
 

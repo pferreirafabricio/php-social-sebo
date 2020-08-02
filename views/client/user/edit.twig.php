@@ -20,6 +20,7 @@
                     class="form-control" 
                     id="name"
                     name="name"
+                    value="{{user.name}}"
                     placeholder="Ex: Brayan Jenkis"
                     required
                     autofocus
@@ -39,6 +40,7 @@
                             class="form-control" 
                             id="email"
                             name="email"
+                            value="{{user.email}}"
                             placeholder="youremail@domain.com"
                             required
                         >
@@ -57,26 +59,7 @@
                             type="password" 
                             class="form-control" 
                             id="password" 
-                            name="password" 
-                            placeholder="*********"
-                            required
-                        >
-                        <span class="invalid-feedback"></span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="form-control-label" for="confirmPassword">
-                   Confirm Password
-                </label>
-                <div class="form-group">
-                    <div class="input-group mb-3">
-                        <input 
-                            type="password" 
-                            class="form-control" 
-                            id="confirmPassword" 
-                            name="confirmPassword" 
+                            name="password"
                             placeholder="*********"
                             required
                         >
@@ -88,29 +71,9 @@
             <div class="btn-actions">
                 <div>
                     <button type="submit" class="btn btn-primary">
-                        Register
+                        Save changes
                     </button>
-                    <div class="form-group">
-                        <div class="custom-control custom-checkbox">
-                            <input 
-                                type="checkbox" 
-                                class="custom-control-input" 
-                                id="customCheck1" 
-                                checked=""
-                            >
-                            <label class="custom-control-label" for="customCheck1">
-                                I read and accept the 
-                                <a class="orange-hover" href="#">use terms</a>. 
-                            </label>
-                        </div>
-                    </div>
                 </div>
-                <a 
-                    class="forgot-password no-text-decoration orange-hover" 
-                    href="{{BASE}}login"
-                >
-                   I've had an account
-                </a>
             </div>
         </fieldset>
     </form>

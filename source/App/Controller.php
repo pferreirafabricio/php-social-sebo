@@ -48,7 +48,7 @@ class Controller
             'redirectTo' => $redirectTo,
         ]);
         
-        return;
+        die();
     }
 
     protected function success(string $title, int $statusCode = 200, string $redirectTo = ''): void
@@ -59,6 +59,6 @@ class Controller
             'redirectTo' => $redirectTo,
         ]);
         
-        return;
+        die();
     }
 }

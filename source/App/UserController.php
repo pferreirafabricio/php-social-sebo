@@ -62,6 +62,35 @@ class UserController extends Controller
         // Create view for success messages
         echo $this->success("User create successfully!", 200, 'login');
     }
+
+    public function update(): void 
+    {
+        $filters = [
+            'name' => FILTER_SANITIZE_STRING,
+            'email' => FILTER_SANITIZE_EMAIL,
+            'password' => FILTER_SANITIZE_STRING,
+            'confirmPassword' => FILTER_SANITIZE_STRING,
+        ];
+
+        $data = postAll($filters);
+        $data = array_map('strip_tags', $data);
+        $data =  array_map('trim', $data);
+        $userData = (object) $data;
+
+        $user = new User(
+                get('id', FILTER_SANITIZE_NUMBER_INT),
+                $userData->name,
+                $userData->email,
+                $userData->password,
+                1,
+                null);
+
+        $errors = $this->validate($user);
+
+        if ($errors !== []) {
+            echo $this->error('Form data invalid!', $errors, 400);
+        }
+    }
     
     /**
      * Validate all User data

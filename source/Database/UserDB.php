@@ -68,7 +68,7 @@ class UserDB extends BasePDO
 
     public function getUserById(int $id)
     {
-        $sql = "SELECT nome, email, senha
+        $sql = "SELECT id, nome, email, senha, status
                   FROM usuario
                  WHERE id = :id";
 
