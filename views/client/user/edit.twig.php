@@ -8,7 +8,7 @@
 
 {% block body %}
   <div class="">
-    <h1 class="display-3 mb-4">Edit user</h1>
+    <h1 class="display-4 mb-4">Edit your profile</h1>
     <form method="POST" action="{{BASE}}user/update" id="frmEdit">
         <fieldset> 
             <div class="form-group">
@@ -22,7 +22,6 @@
                     name="name"
                     value="{{user.name}}"
                     placeholder="Ex: Brayan Jenkis"
-                    required
                     autofocus
                 >
                 <span class="invalid-feedback"></span>
@@ -42,7 +41,6 @@
                             name="email"
                             value="{{user.email}}"
                             placeholder="youremail@domain.com"
-                            required
                         >
                         <span class="invalid-feedback"></span>
                     </div>
@@ -61,7 +59,6 @@
                             id="password" 
                             name="password"
                             placeholder="*********"
-                            required
                         >
                         <span class="invalid-feedback"></span>
                     </div>
