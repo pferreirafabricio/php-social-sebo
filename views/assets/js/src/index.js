@@ -65,9 +65,11 @@ function validateFields(field) {
     if (error) {
       const message = customMessage(error);
       setCustomMessage(message);
-    } else {
-      setCustomMessage();
+      return false;
     }
+
+    setCustomMessage();
+    return true;
   };
 }
 

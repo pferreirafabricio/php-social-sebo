@@ -30,13 +30,10 @@ class UserDB extends BasePDO
     }
 
     public function update(User $user): bool
-    {
-        $password = $user->getPassword() != '' ? ", senha = '{$user->getPassword()}'" : null;
-        
+    {   
         $sql = "UPDATE usuario
                    SET nome = :name,
                    email = :email
-                   {$password}
                  WHERE id = :id";
 
         $params = [

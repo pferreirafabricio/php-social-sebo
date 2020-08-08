@@ -8,19 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const elForm = document.forms['frmEdit'];
   const elName = elForm['name'];
   const elEmail = elForm['email'];
-  const elPassword = elForm['password'];
 
   elForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    validateFields(elName)();
-    validateFields(elEmail)();
-
-    if (elPassword.value.length > 0) {
-      validateFields(elPassword)();
+    if (validateFields(elName)() && validateFields(elEmail)()) {
+      elForm.submit();
     }
-
-    // TODO:: Add condition for submit the form
-    elForm.submit();
   });
 });

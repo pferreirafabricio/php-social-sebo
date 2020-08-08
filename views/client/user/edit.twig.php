@@ -47,24 +47,6 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <label class="form-control-label" for="password">
-                    Password
-                </label>
-                <div class="form-group">
-                    <div class="input-group mb-3">
-                        <input 
-                            type="password" 
-                            class="form-control" 
-                            id="password" 
-                            name="password"
-                            placeholder="*********"
-                        >
-                        <span class="invalid-feedback"></span>
-                    </div>
-                </div>
-            </div>
-
             <div class="btn-actions">
                 <div>
                     <button type="submit" class="btn btn-primary">

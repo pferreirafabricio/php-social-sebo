@@ -67,7 +67,6 @@ class UserController extends Controller
         $filters = [
             'name' => FILTER_SANITIZE_STRING,
             'email' => FILTER_SANITIZE_EMAIL,
-            'password' => FILTER_SANITIZE_STRING
         ];
 
         $data = postAll($filters);
@@ -79,18 +78,12 @@ class UserController extends Controller
             Session::getValue('id'),
             $userData->name,
             $userData->email,
-            $userData->password
         );
 
-        $validatePassword = $user->getPassword() != '' ? true : false;
-
-        $errors = $this->validate($user, true, true, $validatePassword);
+        $errors = $this->validate($user, true, true, false);
 
         if ($errors !== [])
             echo $this->error('Form data invalid!', $errors, 400);
-
-        if ($validatePassword) 
-            $user->setPassword(passwordHash($user->getPassword()));
 
         if (!$this->userDB->getUserById($user->getId())) {
             echo $this->error('User update failed!', [
@@ -120,7 +113,7 @@ class UserController extends Controller
         bool $validatePassword = true
     ): array {
         $emailRegex = '/^([a-zA-Z0-9\.\+\-\_]{5,60})\@([a-zA-Z0-9\.\+\-\_]{2,10})\.([a-zA-Z0-9]{2,10}).+$/';
-        $passwordRegex = '/([a-zA-Z0-9]){2,60}/';
+        $passwordRegex = '/([a-zA-Z0-9\.\+\-\_\@]){2,60}/';
         $nameRegex = '/([a-zA-Z]){2,60}/';
         $errors = [];
 
