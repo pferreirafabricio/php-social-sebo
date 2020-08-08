@@ -1,6 +1,6 @@
 {% extends 'partials/main.twig.php' %}
 
-{% block title %}Login{% endblock %}
+{% block title %}Edit Password{% endblock %}
 
 {% block styles %}
 <link rel="stylesheet" href="{{BASE}}assets/css/login.css">
@@ -13,7 +13,7 @@
     <fieldset>
         <div class="form-group">
             <label class="form-control-label" for="password">
-                Password
+                New password
             </label>
             <div class="form-group">
                 <div class="input-group mb-3">
@@ -23,6 +23,7 @@
                         id="password" 
                         name="password"
                         placeholder="*********"
+                        required
                     >
                     <span class="invalid-feedback"></span>
                 </div>
@@ -38,9 +39,10 @@
                     <input 
                         type="password" 
                         class="form-control" 
-                        id="confirmPasswod" 
-                        name="confirmPasswod"
+                        id="confirmPassword" 
+                        name="confirmPassword"
                         placeholder="*********"
+                        required
                     >
                     <span class="invalid-feedback"></span>
                 </div>
@@ -50,7 +52,7 @@
         <div class="btn-actions">
             <div>
                 <button type="submit" class="btn btn-primary">
-                    Save password
+                    Save new password
                 </button>
             </div>
         </div>

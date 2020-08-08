@@ -42,6 +42,9 @@
                     <a class="action-item no-text-decoration" href="{{BASE}}login/edit">
                         <i class="gg-edit-markup"></i> Edit
                     </a>
+                    <a class="action-item no-text-decoration" href="{{BASE}}login/editPassword">
+                        <i class="gg-keyhole"></i> Password
+                    </a>
                     <a class="action-item no-text-decoration" href="{{BASE}}login/logout">
                         <i class="gg-arrow-left-o"></i> Logout
                     </a>

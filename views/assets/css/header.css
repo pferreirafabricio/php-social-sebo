@@ -9,6 +9,7 @@
 
 .actions {
     display: none;
+    z-index: 999;
     position: absolute;
     padding-top: 10px;
 }
@@ -22,7 +23,7 @@
     display: flex;
     align-items: center;
     background-color: var(--orange);
-    padding: 10px;
+    padding: 10px 20px 10px 10px;
 }
 
 .actions .action-item:hover {

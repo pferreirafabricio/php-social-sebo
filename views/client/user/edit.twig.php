@@ -1,6 +1,6 @@
 {% extends 'partials/main.twig.php' %}
 
-{% block title %}Login{% endblock %}
+{% block title %}Edit{% endblock %}
 
 {% block styles %}
 <link rel="stylesheet" href="{{BASE}}assets/css/login.css">

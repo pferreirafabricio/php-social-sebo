@@ -45,6 +45,20 @@ class UserDB extends BasePDO
         return $this->pdo->ExecuteNonQuery($sql, $params);
     }
 
+    public function updatePassword(int $userId, string $newPassword): bool 
+    {
+        $sql = "UPDATE usuario
+                   SET senha = :password
+                 WHERE id = :id";
+
+        $params = [
+            ':id' => $userId,
+            ':password' => $newPassword
+        ];
+
+        return $this->pdo->ExecuteNonQuery($sql, $params);
+    }
+
     public function verifyIfEmailExists(string $email): bool
     {
         $sql = "SELECT id FROM usuario WHERE email = :email";

@@ -29,6 +29,12 @@ class LoginController extends Controller
         ]);
     }
 
+    public function editPassword(): void 
+    {
+        Security::protect();
+        echo $this->view('client/user/editPassword');
+    }
+
     #endregion
 
     #region Internal

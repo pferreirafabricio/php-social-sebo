@@ -10,10 +10,16 @@ use Source\Classes\Session;
 class UserController extends Controller
 {
     private $userDB;
+    private $emailRegex;
+    private $passwordRegex;
+    private $nameRegex;
 
     public function __construct()
     {
         $this->userDB = new UserDB();
+        $this->emailRegex = '/^([a-zA-Z0-9\.\+\-\_]{5,60})\@([a-zA-Z0-9\.\+\-\_]{2,10})\.([a-zA-Z0-9]{2,10}).+$/';
+        $this->passwordRegex = '/([a-zA-Z0-9\.\+\-\_\@]){2,60}/';
+        $this->nameRegex = '/([a-zA-Z]){2,60}/';
     }
 
     public function create(): void
@@ -100,6 +106,44 @@ class UserController extends Controller
         echo $this->success("User updated successfully!", 200, 'dashboard');
     }
 
+    public function updatePassword(): void
+    {
+        $filters = [
+            'password' => FILTER_SANITIZE_STRING,
+            'confirmPassword' => FILTER_SANITIZE_EMAIL,
+        ];
+
+        $data = postAll($filters);
+        $data = array_map('strip_tags', $data);
+        $data =  array_map('trim', $data);
+
+        $errors = [];
+        if (!preg_match($this->passwordRegex, $data['password']))
+            $errors[] = 'Password is not valid';
+
+        if ($data['confirmPassword'] !== $data['password'])
+            $errors[] = 'The passwords are different!';
+
+        if ($errors !== [])
+            echo $this->error('Form data invalid!', $errors, 400);
+
+        if (!$this->userDB->getUserById(Session::getValue('id'))) {
+            echo $this->error('User update failed!', [
+                "This user doesn't exists in the system"
+            ], 400);
+        }
+
+        $newPassword = passwordHash($data['password']);
+
+        if (!$this->userDB->updatePassword(Session::getValue('id'), $newPassword)) {
+            echo $this->error('User update failed!', [
+                "Something was wrong on user update, please try again in 5 minutes"
+            ], 500);
+        }
+        
+        echo $this->success("User password updated successfully!", 200, 'dashboard');
+    }
+
     /**
      * Validate all User data
      *
@@ -112,18 +156,15 @@ class UserController extends Controller
         bool $validateEmail = true,
         bool $validatePassword = true
     ): array {
-        $emailRegex = '/^([a-zA-Z0-9\.\+\-\_]{5,60})\@([a-zA-Z0-9\.\+\-\_]{2,10})\.([a-zA-Z0-9]{2,10}).+$/';
-        $passwordRegex = '/([a-zA-Z0-9\.\+\-\_\@]){2,60}/';
-        $nameRegex = '/([a-zA-Z]){2,60}/';
         $errors = [];
 
-        if ($validateName && !preg_match($nameRegex, $user->getName()))
+        if ($validateName && !preg_match($this->nameRegex, $user->getName()))
             $errors[] = 'Name is invalid';
 
-        if ($validateEmail && !preg_match($emailRegex, $user->getEmail()))
+        if ($validateEmail && !preg_match($this->emailRegex, $user->getEmail()))
             $errors[] = 'Email is invalid';
 
-        if ($validatePassword && !preg_match($passwordRegex, $user->getPassword()))
+        if ($validatePassword && !preg_match($this->passwordRegex, $user->getPassword()))
             $errors[] = 'Password is invalid';
 
         // if ($user->password !== $user->confirmPassword)
