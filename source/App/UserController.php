@@ -4,7 +4,7 @@ namespace Source\App;
 
 use Source\App\Controller;
 use Source\Models\User;
-use Source\Database\UserDB;
+use Source\Business\UserDB;
 use Source\Classes\Session;
 
 class UserController extends Controller

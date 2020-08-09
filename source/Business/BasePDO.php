@@ -1,6 +1,6 @@
 <?php
 
-namespace Source\Database;
+namespace Source\Business;
 
 use PDO;
 /**

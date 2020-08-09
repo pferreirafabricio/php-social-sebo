@@ -3,7 +3,7 @@
 namespace Source\App;
 
 use Source\App\Controller;
-use Source\Database\UserDB;
+use Source\Business\UserDB;
 use Source\Classes\Session;
 use Source\Classes\Security;
 

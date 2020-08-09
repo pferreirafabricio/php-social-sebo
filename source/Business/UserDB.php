@@ -1,8 +1,8 @@
 <?php
 
-namespace Source\Database;
+namespace Source\Business;
 
-use Source\Database\BasePDO;
+use Source\Business\BasePDO;
 use Source\Models\User;
 
 class UserDB extends BasePDO 
