@@ -2,7 +2,7 @@
 /* eslint-disable no-restricted-syntax */
 import {
   customValidation,
-} from './index.js';
+} from './index.min.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const elForm = document.forms['frmPasswordEdit'];

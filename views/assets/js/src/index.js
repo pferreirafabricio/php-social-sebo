@@ -3,7 +3,7 @@ import {
   validateEmail,
   validatePassword,
   validateName,
-} from './validations.js';
+} from './validations.min.js';
 
 function validateFields(field) {
   function verifyErrors() {

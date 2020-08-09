@@ -2,7 +2,7 @@
 /* eslint-disable no-restricted-syntax */
 import {
   validateFields,
-} from './index.js';
+} from './index.min.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const elForm = document.forms['frmEdit'];

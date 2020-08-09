@@ -60,5 +60,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script type="module" src="{{BASE}}assets/js/src/editUser.js"></script>
+<script type="module" src="{{BASE}}assets/js/min/editUser.min.js"></script>
 {% endblock %}

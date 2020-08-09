@@ -62,5 +62,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script type="module" src="{{BASE}}assets/js/src/editPassword.js"></script>
+<script type="module" src="{{BASE}}assets/js/min/editPassword.min.js"></script>
 {% endblock %}

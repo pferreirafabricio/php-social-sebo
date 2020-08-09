@@ -118,5 +118,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script type="module" src="{{BASE}}assets/js/src/register.js"></script>
+<script type="module" src="{{BASE}}assets/js/min/register.min.js"></script>
 {% endblock %}
