@@ -1,4 +1,4 @@
-name: PHP Composer
+name: PHP Workflow
 
 on:
   push:
@@ -10,7 +10,7 @@ jobs:
    
     steps:
     - name: Run tests
-      uses: Graychen/phpunit-action@v1.0.0
+      uses: php-actions/phpunit@v1
       with:
         config: phpunit.xml
     
