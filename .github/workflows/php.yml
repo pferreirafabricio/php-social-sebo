@@ -12,7 +12,7 @@ jobs:
     - name: Run tests
       uses: php-actions/phpunit@v1
       with:
-        config: phpunit.xml
+        config: ./phpunit.xml
     
   build:
 
