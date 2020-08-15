@@ -41,9 +41,20 @@ class BookController extends Controller
      *
      * @return void
      */
-    public function edit(): void
+    public function edit($bookId = 0): void
     {
-        echo $this->view('client/book/edit');
+        Security::protect();
+        $bookId = $this->validateParamId($bookId);
+
+        $book = (new BookDB)->getByBookIdAndUserId($bookId, Session::getValue('id'));
+
+        if (!$book) 
+            echo $this->error('This book was not found!', [], 422, 'category');
+
+        echo $this->view('client/book/edit', [
+            'book' => $book,
+            'categories' => (new CategoryDB)->getAll(),
+        ]);
     }
 
     /**
@@ -108,6 +119,56 @@ class BookController extends Controller
         redirect(BASE . 'book/edit/' . $bookId);
     }
 
+    public function update($bookId = 0): void
+    {
+        $bookId = $this->validateParamId($bookId);
+
+        $filters = [
+            'title' => FILTER_SANITIZE_STRING,
+            'slug' => FILTER_SANITIZE_STRING,
+            'price' => FILTER_SANITIZE_STRING,
+            'synopsis' => FILTER_SANITIZE_SPECIAL_CHARS,
+            'status' => FILTER_SANITIZE_STRING,
+            'category' => FILTER_SANITIZE_NUMBER_INT,
+        ];
+
+        $data = postAll($filters);
+        $data =  array_map('trim', $data);
+        $bookData = (object) $data;
+
+        $book = new Book(
+            $bookId,
+            $bookData->title,
+            $bookData->slug,
+            $bookData->price,
+            null,
+            $bookData->synopsis,
+            null,
+            $bookData->status,
+            new Category(
+                $bookData->category,
+            ),
+            new User(
+                Session::getValue('id'),
+            )
+        );
+
+        $errors = $this->validate($book, true);
+
+        if ($errors !== [])
+            echo $this->error('Form data invalid!', $errors, 400, 'category');
+
+        $updatedSuccessfully = (new BookDB)->update($book);
+
+        if (!$updatedSuccessfully) {
+            echo $this->error('Book update failed!', [
+                "Something was wrong on book update, please try again in 5 minutes"
+            ], 500);
+        }
+
+        redirect(BASE . 'book/edit/' . $bookId);
+    } 
+
     public function validate(Book $book, bool $validateId = false): array
     {
         $errors = [];
@@ -134,5 +195,18 @@ class BookController extends Controller
             $errors[] = 'Invalid user';
 
         return $errors;
+    }
+
+    public function validateParamId($bookId): int
+    {
+        if ($bookId === []) 
+            echo $this->error('Book id invalid!', [], 400, 'category');
+
+        $bookId = filter_var($bookId[0], FILTER_SANITIZE_NUMBER_INT);
+
+        if ($bookId <= 0) 
+            echo $this->error('Book id invalid!', [], 400, 'category');
+
+        return $bookId;
     }
 }

@@ -68,6 +68,7 @@
                     >
                         <option value="0">Select a status...</option>
                         <option value="1">Active</option>
+                        <option value="2">Hidden</option>
                     </select>
                     <span class="invalid-feedback"></span>
                 </div>

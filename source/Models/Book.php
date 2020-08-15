@@ -20,12 +20,12 @@ class Book
 
     public function __construct(
         $id = null,
-        string $title = '',
-        string $slug = '',
+        string $title = null,
+        string $slug = null,
         int $price = null,
-        string $thumb = '',
-        string $synopsis = '',
-        string $created_at = '',
+        string $thumb = null,
+        string $synopsis = null,
+        string $created_at = null,
         int $status = null,
         Category $category = null,
         User $user = null

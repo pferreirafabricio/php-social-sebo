@@ -55,6 +55,32 @@ class BookDB extends BasePDO
         return $this->pdo->GetLastID();
     }
 
+    public function update(Book $book): bool
+    {
+        $sql = 'UPDATE livro
+                   SET titulo = :title,
+                       slug = :slug,
+                       valor = :price,
+                       sinopse = :synopsis,
+                       status = :status,
+                       categoria_id = :category_id
+                 WHERE usuario_id = :userId
+                   AND id = :bookId';
+
+        $params = [
+            ':bookId' => $book->getId(),
+            ':title' => $book->getTitle(),
+            ':slug' => $book->getSlug(),
+            ':price' => $book->getPrice(),
+            ':synopsis' => $book->getSynopsis(),
+            ':status' => $book->getStatus(),
+            ':category_id' => $book->getCategory()->getId(),
+            ':userId' => $book->getUser()->getId(),
+        ];
+
+        return $this->pdo->ExecuteNonQuery($sql, $params);
+    }
+
     public function getBookByUserId(int $userId): array
     {
          $sql = "SELECT L.id,
@@ -63,6 +89,7 @@ class BookDB extends BasePDO
                         L.thumb,
                         L.sinopse AS synopsis,
                         L.data_cadastro AS created_at,
+                        L.status,
                         CAT.nome AS category_nome
                   FROM livro L
                  INNER JOIN categoria CAT
@@ -84,6 +111,32 @@ class BookDB extends BasePDO
         return $books;
     }
 
+    public function getByBookIdAndUserId(int $bookId, int $userId)
+    {
+        $sql = "SELECT id,
+                       titulo AS title,
+                       slug,
+                       valor AS price,
+                       status,
+                       sinopse AS synopsis,
+                       categoria_id AS category_id
+                  FROM livro L
+                  WHERE L.id = :bookId 
+                    AND L.usuario_id = :userId";
+
+        $params = [
+            ':bookId' => $bookId,
+            ':userId' => $userId,
+        ];
+
+        $dataReader = $this->pdo->ExecuteQueryOneRow($sql, $params);
+
+        if ($dataReader == [] || $dataReader == null) 
+            return false;
+
+        return $this->collection($dataReader);
+    }
+
     private function collection($data): Book
     {
         return new Book(
@@ -96,7 +149,7 @@ class BookDB extends BasePDO
             $data['created_at'] ?? null,
             $data['status'] ?? null,
             new Category(
-                $data['categoria_id'] ?? null,
+                $data['category_id'] ?? null,
                 $data['category_nome'] ?? null
             ),
             new User(

@@ -4,30 +4,32 @@
 {% block body %}
 <div>
     <h1>Dashboard</h1>
-    <a href="{{BASE}}category/list" class="btn btn-info">
-        <div class="d-flex align-items-center">
-            <i class="gg-layout-list d-inline-block mr-2"></i> 
-            Categories
-        </div>
-    </a>
-    <a href="{{BASE}}book/new" class="btn btn-success">
-        <div class="d-flex align-items-center">
-            <i class="gg-stark d-inline-block mr-3"></i> 
-            New book
-        </div>
-    </a>
-    <a 
-        href="{{BASE}}login/logout" 
-        class="btn btn-danger"
-        onclick="return confirm('Do you really want logout?');"
-    >
-        <span class="d-flex align-items-center">
-            <i class="gg-arrow-left-o d-inline-block mr-2"></i>  
-            Logout
-        </span>
-    </a>
+
+    <div class="mb-2">
+        <a href="{{BASE}}category/list" class="btn btn-info">
+            <div class="d-flex align-items-center">
+                <i class="gg-layout-list d-inline-block mr-2"></i> 
+                Categories
+            </div>
+        </a>
+        <a href="{{BASE}}book/new" class="btn btn-success">
+            <div class="d-flex align-items-center">
+                <i class="gg-stark d-inline-block mr-3"></i> 
+                New book
+            </div>
+        </a>
+        <a 
+            href="{{BASE}}login/logout" 
+            class="btn btn-danger"
+            onclick="return confirm('Do you really want logout?');"
+        >
+            <span class="d-flex align-items-center">
+                <i class="gg-arrow-left-o d-inline-block mr-2"></i>  
+                Logout
+            </span>
+        </a> 
+    </div>
     
-    <div>
     <div>
         {% if books == [] %}
         <p class="mt-4">Not exists any book</p>
@@ -35,11 +37,12 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th class="fs-24">Title</th>
-                    <th class="fs-24">Slug</th>
-                    <th class="fs-24">Category</th>
-                    <th class="fs-24">Created At</th>
-                    <th class="fs-24">Actions</th>
+                    <th class="fs-20">Title</th>
+                    <th class="fs-20">Slug</th>
+                    <th class="fs-20">Status</th>
+                    <th class="fs-20">Category</th>
+                    <th class="fs-20">Created At</th>
+                    <th class="fs-20">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -55,6 +58,9 @@
                         >
                             {{book.slug}}
                         </a>
+                    </td>
+                    <td>
+                        {{ book.status == 1 ? 'Active' : 'Hidden'  }}
                     </td>
                     <td>
                         {{book.category.name}}
@@ -81,7 +87,6 @@
             </tbody>
             {% endif %}
         </table>
-    </div>
     </div>
 </div>
 {% endblock %}

@@ -1,61 +1,133 @@
 {% extends 'partials/main.twig.php' %}
-{% block title %}Edit Category{% endblock %}
+{% block title %}New Book{% endblock %}
 
 {% block body %}
 <div>
-    <a href="{{BASE}}category" class="btn btn-success mb-5 mt-3">
+    <h1>Edit book</h1>
+
+    <a href="{{BASE}}dashboard" class="btn btn-success mb-5 mt-3">
         <div class="d-flex align-items-center">
             <i class="gg-arrow-left-o mr-3"></i>
-            Back to categories
+            Back to dashboard
         </div>
     </a>
 
-    <h1>
-        Edit book 
-        <span class="text-danger">{{category.name}}</span>
-    </h1>
-
-    <form method="POST" action="{{BASE}}category/update/{{category.id}}" id="frmRegisterCategory">
-        <fieldset> 
-            <div class="form-group">
-                <label class="form-control-label" for="name">
-                    Name
-                </label>
-                <input 
-                    type="text" 
-                    class="form-control" 
-                    id="name"
-                    name="name"
-                    placeholder="Ex: Romantic Comedy"
-                    value="{{category.name}}"
-                    required
-                    autofocus
-                >
-                <span class="invalid-feedback"></span>
+    <form method="POST" action="{{BASE}}book/update/{{book.id}}" id="frmRegisterBook">
+        <fieldset>
+            <div class="row">
+                <div class="form-group col-12">
+                    <label class="form-control-label" for="title">
+                        Title
+                    </label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        id="title"
+                        name="title"
+                        placeholder="Ex: Warrior Cats into the Wild"
+                        value="{{book.title}}"
+                        required
+                        autofocus
+                    >
+                    <span class="invalid-feedback"></span>
+                </div>
+                <div class="form-group col-12">
+                    <label class="form-control-label" for="slug">
+                        Slug
+                    </label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        id="slug"
+                        name="slug"
+                        placeholder="Ex: warrior-cats-into-the-wild"
+                        value="{{book.slug}}"
+                        required
+                    >
+                    <span class="invalid-feedback"></span>
+                </div>
+                <div class="form-group col-12">
+                    <label class="form-control-label" for="synopsis">
+                        Synopsis
+                    </label>
+                    <textarea  
+                        id="synopsis"
+                        name="synopsis"
+                        required
+                    >
+                        {{book.synopsis | raw}}
+                    </textarea>
+                    <span class="invalid-feedback"></span>
+                </div>
+                <div class="form-group col-12 col-md-4">
+                    <label class="form-control-label" for="status">
+                        Status
+                    </label>
+                    <select 
+                        class="form-control" 
+                        id="status"
+                        name="status"
+                        required
+                    >
+                        <option value="0">Select a status...</option>
+                        <option value="1" {{book.status == 1 ? 'selected' : ''}}>Active</option>
+                        <option value="2" {{book.status == 2 ? 'selected' : ''}}>Hidden</option>
+                    </select>
+                    <span class="invalid-feedback"></span>
+                </div>
+                <div class="form-group col-12 col-md-4">
+                    <label class="form-control-label" for="category">
+                        Category
+                    </label>
+                    <select 
+                        class="form-control" 
+                        id="category"
+                        name="category"
+                        required
+                    >
+                        <option value="0">Select a category...</option>
+                        {% for category in categories %}
+                        <option 
+                            value="{{category.id}}" 
+                            {{category.id == book.category.id ? 'selected' : ''}}
+                        >
+                            {{category.name}}
+                        </option>
+                        {% endfor %}
+                    </select>
+                    <span class="invalid-feedback"></span>
+                </div>
+                <div class="form-group col-12 col-md-4">
+                    <label class="form-control-label" for="price">
+                        Price
+                    </label>
+                    <input 
+                        type="number"
+                        min="0"
+                        max="10000" 
+                        class="form-control" 
+                        id="price"
+                        name="price"
+                        placeholder="Ex: 20,00"
+                        value="{{book.price}}"
+                        required
+                    >
+                    <span class="invalid-feedback"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label class="form-control-label" for="name">
-                    Slug
-                </label>
-                <input 
-                    type="text" 
-                    class="form-control" 
-                    id="slug"
-                    name="slug"
-                    value="{{category.slug}}"
-                    placeholder="Ex: romantic-comedy"
-                    required
-                >
-                <span class="invalid-feedback"></span>
-            </div>
+            
         </fieldset>
         <button type="submit" class="btn btn-primary">
-            Update category
+            Update book
         </button>
     </form>
 </div>
 {% endblock %}
 
 {% block scripts %}
-<script type="module" src="{{BASE}}assets/js/min/newCategory.min.js"></script>
+<script type="module" src="{{BASE}}assets/js/min/newBook.min.js"></script>
+<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('synopsis');
+</script>
 {% endblock %}
