@@ -13,11 +13,11 @@ class Book
     private $slug;
     private $price;
     private $thumb;
-    private $sinopse;
+    private $synopsis;
     private $created_at;
     private $status;
-    private $category_id;
-    private $user_id;
+    private $category;
+    private $user;
 
     public function __construct(
         $id = null,
@@ -28,8 +28,8 @@ class Book
         string $synopsis = '',
         DateTime $created_at = date(DATE_TIME),
         int $status = 1,
-        Category $category_id = null,
-        User $user_id = null
+        Category $category = null,
+        User $user = null
     ) {
         $this->id = $id;
         $this->title = $title;

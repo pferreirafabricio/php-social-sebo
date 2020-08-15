@@ -49,7 +49,8 @@ class CategoryDB extends BasePDO
     public function getAll(): array
     {
         $sql = "SELECT *
-                  FROM categoria";
+                  FROM categoria
+                 ORDER BY nome ASC";
 
         $dataReader = $this->pdo->ExecuteQuery($sql);
 

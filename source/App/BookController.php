@@ -3,10 +3,12 @@
 namespace Source\App;
 
 use Source\App\Controller;
+use Source\Business\CategoryDB;
 use Source\Classes\Security;
 use Source\Models\User;
 use Source\Models\Category;
 use Source\Classes\Session;
+
 
 class BookController extends Controller
 {
@@ -18,7 +20,9 @@ class BookController extends Controller
     public function new(): void
     {
         Security::protect();
-        echo $this->view('client/book/new');
+        echo $this->view('client/book/new', [
+            'categories' => (new CategoryDB)->getAll(),
+        ]);
     }
 
     /**
@@ -29,6 +33,11 @@ class BookController extends Controller
     public function see(string $slug = ''): void
     {
         echo $this->view('client/book/see');
+    }
+
+    public function create(): void 
+    {
+        dd('Create a new book');
     }
 
 }
