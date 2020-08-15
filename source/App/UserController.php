@@ -35,9 +35,9 @@ class UserController extends Controller
         $data = array_map('strip_tags', $data);
         $data =  array_map('trim', $data);
         $userData = (object) $data;
-
+        
         $user = new User(
-            get('id', FILTER_SANITIZE_NUMBER_INT),
+            null,
             $userData->name,
             $userData->email,
             $userData->password,

@@ -26,7 +26,10 @@ class CategoryController extends Controller
      */
     public function list(): void
     {
-        echo $this->view('client/category/list');
+        $categories = (new CategoryDB)->getAll();
+        echo $this->view('client/category/list', [
+            'categories' => $categories,
+        ]);
     }
 
     /**
@@ -45,10 +48,19 @@ class CategoryController extends Controller
      *
      * @return void
      */
-    public function edit(): void
+    public function edit($id): void
     {
         Security::protect();
-        echo $this->view('client/category/edit');
+        $id = $this->validateParamId($id);
+
+        $category = (new CategoryDB)->getById($id);
+
+        if (!$category) 
+            echo $this->error('Category not exists!', [], 400, 'category');
+
+        echo $this->view('client/category/edit', [
+            'category' => $category,
+        ]);
     }
 
     public function create(): void 
@@ -73,7 +85,7 @@ class CategoryController extends Controller
 
         if ($errors !== [])
             echo $this->error('Form data invalid!', $errors, 400, 'category');
-        
+
         $categoryId = (new CategoryDB)->insert($category);
 
         if (!$categoryId) {
@@ -81,8 +93,44 @@ class CategoryController extends Controller
                 "Something was wrong on category registration, please try again in 5 minutes"
             ], 500);
         }
-    
+
         redirect(BASE . 'category/edit/' . $categoryId);
+    }
+
+    public function update($id): void 
+    {
+        $id = $this->validateParamId($id);
+
+        $filters = [
+            'name' => FILTER_SANITIZE_STRING,
+            'slug' => FILTER_SANITIZE_STRING,
+        ];
+
+        $data = postAll($filters);
+        $data = array_map('strip_tags', $data);
+        $data =  array_map('trim', $data);
+        $categoryData = (object) $data;
+
+        $category = new Category(
+            $id,
+            $categoryData->name,
+            $categoryData->slug,
+        );
+
+        $errors = $this->validate($category, true);
+
+        if ($errors !== [])
+            echo $this->error('Form data invalid!', $errors, 400, 'category');
+        
+        $updatedCategory = (new CategoryDB)->update($category);
+
+        if (!$updatedCategory) {
+            echo $this->error('Category update failed!', [
+                "Something was wrong on category update, please try again in 5 minutes"
+            ], 500);
+        }
+    
+        redirect(BASE . 'category/list');
     }
 
     /**
@@ -105,5 +153,18 @@ class CategoryController extends Controller
             $errors[] = 'Slug is invalid';
 
         return $errors;
+    }
+
+    public function validateParamId($id): int
+    {
+        if ($id === []) 
+            echo $this->error('Category id invalid!', [], 400, 'category');
+
+        $id = filter_var($id[0], FILTER_SANITIZE_NUMBER_INT);
+
+        if ($id <= 0) 
+            echo $this->error('Category id invalid!', [], 400, 'category');
+
+        return $id;
     }
 }

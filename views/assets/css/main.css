@@ -32,3 +32,19 @@ body {
 .orange-hover:hover {
     color: var(--orange);
 }
+
+.fs-16 {
+    font-size: 16px;
+}
+
+.fs-24 {
+    font-size: 24px;
+}
+
+.fs-28 {
+    font-size: 28px;
+}
+
+.fs-32 {
+    font-size: 32px;
+}

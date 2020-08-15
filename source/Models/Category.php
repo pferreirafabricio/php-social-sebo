@@ -29,6 +29,13 @@ class Category
 
     public function getSlug()
     {
-        return $this->slug;
+        $slug = $this->slug;
+        $slug = trim($slug);
+        $slug = strtolower($slug);
+        $slug = str_replace([
+            ' ', '.', '*', ',', '*'
+        ], '-', $slug);
+        
+        return $slug;
     }
 }

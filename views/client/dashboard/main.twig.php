@@ -4,7 +4,7 @@
 {% block body %}
 <div>
     <h1>Dashboard</h1>
-    <a href="#" class="btn btn-info">
+    <a href="{{BASE}}category/list" class="btn btn-info">
         <div class="d-flex align-items-center">
             <i class="gg-layout-list d-inline-block mr-2"></i> 
             Categories

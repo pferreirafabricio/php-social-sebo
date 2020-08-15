@@ -16,8 +16,13 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="{{BASE}}">Home</a>
                 </li>
+                {% if userName != null %}
                 <li class="nav-item">
-                    <a class="nav-link" href="">Categories</a>
+                    <a class="nav-link" href="{{BASE}}dashboard/">Dashboard</a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{BASE}}category/">Categories</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{BASE}}about/">About us</a>
