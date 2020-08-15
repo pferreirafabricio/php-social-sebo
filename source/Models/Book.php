@@ -2,7 +2,6 @@
 
 namespace Source\Models;
 
-use DateTime;
 use Source\Models\Category;
 use Source\Models\User;
 
@@ -23,10 +22,10 @@ class Book
         $id = null,
         string $title = '',
         string $slug = '',
-        float $price = 0.00,
+        int $price = 0,
         string $thumb = '',
         string $synopsis = '',
-        DateTime $created_at = date(DATE_TIME),
+        string $created_at = '',
         int $status = 1,
         Category $category = null,
         User $user = null
@@ -72,7 +71,7 @@ class Book
         return $this->synopsis;
     }
 
-    public function getCreatedAt(): DateTime
+    public function getCreatedAt(): string
     {
         return $this->created_at;
     }

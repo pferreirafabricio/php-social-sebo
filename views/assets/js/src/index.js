@@ -21,6 +21,8 @@ function validateFields(field) {
         foundErrors = 'typeMismatch';
       } else if (field.type === 'text' && !validateName(field.value)) {
         foundErrors = 'typeMismatch';
+      } else if (field.type === 'textarea' && !validateSynopsis(field.value)) {
+        foundErrors = 'typeMismatch';
       }
     }
 
@@ -38,8 +40,16 @@ function validateFields(field) {
         typeMismatch: 'Please, type a valid email',
       },
       text: {
-        valueMissing: 'Please, fill the name field',
+        valueMissing: 'This field is required',
         typeMismatch: 'Please, type a valid name',
+      },
+      number: {
+        valueMissing: 'This field is required',
+        typeMismatch: 'Please, type a valid number',
+      },
+      select: {
+        valueMissing: 'Please, select a value',
+        typeMismatch: 'Please, select a valid value',
       },
     };
 

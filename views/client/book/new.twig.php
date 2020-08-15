@@ -115,7 +115,7 @@
 {% endblock %}
 
 {% block scripts %}
-<script type="module" src="{{BASE}}assets/js/min/newCategory.min.js"></script>
+<script type="module" src="{{BASE}}assets/js/min/newBook.min.js"></script>
 <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
 <script>
     CKEDITOR.replace('synopsis');
