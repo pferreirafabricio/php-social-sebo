@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
       statusSpanError.innerHTML = '';
       elSelectStatus.classList.remove('is-invalid');
       elSelectStatus.classList.add('is-valid');
+      validData = true;
     }
 
     if (elSelectCategory.value < 1 || elSelectCategory.value === null) {

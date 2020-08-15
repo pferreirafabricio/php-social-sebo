@@ -16,7 +16,7 @@ class BookDB extends BasePDO
         $this->pdo = new BasePDO();
     }
 
-    public function insert(Book $book): bool
+    public function insert(Book $book)
     {
         $sql = 'INSERT INTO livro(titulo,
                                   slug,
@@ -131,7 +131,7 @@ class BookDB extends BasePDO
 
         $dataReader = $this->pdo->ExecuteQueryOneRow($sql, $params);
 
-        if ($dataReader == [] || $dataReader == null) 
+        if (empty($dataReader)) 
             return false;
 
         return $this->collection($dataReader);

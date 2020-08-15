@@ -54,7 +54,14 @@ class Book
 
     public function getSlug(): string
     {
-        return $this->slug;
+        $slug = $this->slug;
+        $slug = trim($slug);
+        $slug = mb_strtolower($slug);
+        $slug = str_replace([
+            ' ', '.', '*', ',', '*'
+        ], '-', $slug);
+        
+        return $slug;
     }
     public function getPrice(): float
     {

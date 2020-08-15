@@ -31,7 +31,7 @@ class Category
     {
         $slug = $this->slug;
         $slug = trim($slug);
-        $slug = strtolower($slug);
+        $slug = mb_strtolower($slug);
         $slug = str_replace([
             ' ', '.', '*', ',', '*'
         ], '-', $slug);
