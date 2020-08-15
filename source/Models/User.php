@@ -5,7 +5,7 @@ namespace Source\Models;
 use Source\Models\Model;
 
 class User
-{   
+{
     private $id;
     private $nome;
     private $email;
@@ -13,8 +13,14 @@ class User
     private $status;
     private $token;
 
-    public function __construct(int $id = null, string $nome = '', string $email = '', string $senha = '', int $status = 2, string $token = null)
-    {
+    public function __construct(
+        int $id = null,
+        string $nome = null,
+        string $email = null,
+        string $senha = null,
+        int $status = 2,
+        string $token = null
+    ) {
         $this->id = $id;
         $this->nome = $nome;
         $this->email = strtolower($email);
@@ -25,7 +31,7 @@ class User
 
     #region Setters
 
-    public function setPassword(string $password): void 
+    public function setPassword(string $password): void
     {
         $this->senha = $password;
     }

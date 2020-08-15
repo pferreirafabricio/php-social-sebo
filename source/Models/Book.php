@@ -22,11 +22,11 @@ class Book
         $id = null,
         string $title = '',
         string $slug = '',
-        int $price = 0,
+        int $price = null,
         string $thumb = '',
         string $synopsis = '',
         string $created_at = '',
-        int $status = 1,
+        int $status = null,
         Category $category = null,
         User $user = null
     ) {

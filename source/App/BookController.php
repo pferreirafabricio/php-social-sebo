@@ -51,8 +51,11 @@ class BookController extends Controller
      *
      * @return void
      */
-    public function see(string $slug = ''): void
+    public function see($slug = ''): void
     {
+        $slug = filter_var($slug[0], FILTER_SANITIZE_STRING);
+
+        dd($slug);
         echo $this->view('client/book/see');
     }
 

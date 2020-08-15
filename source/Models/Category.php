@@ -10,7 +10,7 @@ class Category
     private $nome;
     private $slug;
 
-    public function __construct($id = null, string $nome = '', string $slug = '')
+    public function __construct($id = null, string $nome = null, string $slug = null)
     {
         $this->id = $id;
         $this->nome = $nome;
