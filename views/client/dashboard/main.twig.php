@@ -10,7 +10,7 @@
             Categories
         </div>
     </a>
-    <a href="#" class="btn btn-success">
+    <a href="{{BASE}}book/new" class="btn btn-success">
         <div class="d-flex align-items-center">
             <i class="gg-stark d-inline-block mr-3"></i> 
             New book
@@ -26,5 +26,49 @@
             Logout
         </span>
     </a>
+    
+    <div>
+    <div>
+        {% if books == [] %}
+        <p>Not exists any book</p>
+        {% else %}
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="fs-24">Title</th>
+                    <th class="fs-24">Slug</th>
+                    <th class="fs-24">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                <tr>
+                    <td class="p-2 pl-4 font-weight-bold">
+                        {{book.name}}
+                    </td>
+                    <td>
+                        {{book.slug}}
+                    </td>
+                    <td class="p-2">
+                        <a href="{{BASE}}book/edit/{{book.id}}" class="btn btn-warning text-black-50">
+                            <div class="d-flex align-items-center">
+                                <i class="gg-edit-markup mr-2"></i>
+                                Edit
+                            </div>
+                        </a>
+                        <a href="{{BASE}}book/delete/{{book.id}}" class="btn btn-danger">
+                            <div class="d-flex align-items-center">
+                                <i class="gg-trash-empty mr-2"></i>
+                                Remove
+                            </div>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            {% endif %}
+        </table>
+    </div>
+    </div>
 </div>
 {% endblock %}
