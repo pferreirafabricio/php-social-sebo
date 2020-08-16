@@ -77,3 +77,24 @@ function passwordHash(string $password): string
 {
     return password_hash($password, PASSWORD_DEFAULT);
 }
+
+function arrayTree(array $array, int $maxColumns = 4): array
+{
+    $temporaryArray = [];
+    $newArray = [];
+    $index = 0;
+    $lasItem = end($array);
+
+    foreach ($array as $item) {
+        $temporaryArray[] = $item;
+        $index++;
+
+        if ($index == $maxColumns || $item == $lasItem) {
+            $newArray[] = $temporaryArray;
+            $temporaryArray = null;
+            $index = 0;
+        }
+    }
+
+    return $newArray;
+}

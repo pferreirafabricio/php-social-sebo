@@ -153,6 +153,35 @@ class BookDB extends BasePDO
         return $this->collection($dataReader);
     }
 
+    public function getBookBySlug(string $slug): array
+    {
+         $sql = "SELECT L.slug,
+                        L.titulo AS title,
+                        L.thumb,
+                        L.valor  AS price,
+                        L.sinopse AS synopsis
+                  FROM livro L
+                 INNER JOIN categoria CAT
+                    ON CAT.id = L.categoria_id
+                 WHERE LOWER(CAT.slug) = :slug
+                   AND L.status = :status
+                 ORDER BY L.titulo ASC";
+
+        $params = [
+            ':slug' => $slug,
+            ':status' => 1
+        ];
+        
+        $dataReader = $this->pdo->ExecuteQuery($sql, $params);
+
+        $books = [];
+
+        foreach ($dataReader as $book) 
+            $books[] = $this->collection($book);
+
+        return $books;
+    }
+
     public function getThumbById(int $bookId, int $userId)
     {
          $sql = "SELECT L.id, L.thumb

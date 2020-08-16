@@ -80,6 +80,24 @@ class CategoryDB extends BasePDO
         return $this->collection($dataReader);
     }
 
+    public function getCategoryNameBySlug(string $slug)
+    {
+        $sql = "SELECT nome
+                  FROM categoria
+                 WHERE slug = :slug";
+
+        $params = [
+            ':slug' => $slug,
+        ];
+
+        $dataReader = $this->pdo->ExecuteQueryOneRow($sql, $params);
+
+        if (!$dataReader)
+            return false;
+
+        return $this->collection($dataReader);
+    }
+
     public function collection($data): Category
     {
         return new Category(

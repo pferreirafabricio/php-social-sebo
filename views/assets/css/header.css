@@ -1,9 +1,9 @@
-.user-actions {
+.dropdown-list {
     position: relative;
     cursor: pointer;
 }
 
-.user-actions:hover .actions {
+.dropdown-list:hover .actions {
     display: block;
 }
 

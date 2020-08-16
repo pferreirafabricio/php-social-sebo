@@ -11,6 +11,12 @@
             Back to dashboard
         </div>
     </a>
+    <a href="{{BASE}}book/thumb/{{book.id}}" class="btn btn-info mb-5 mt-3">
+        <div class="d-flex align-items-center">
+            <i class="gg-image mr-3"></i>
+            Edit thumb
+        </div>
+    </a>
 
     <form method="POST" action="{{BASE}}book/update/{{book.id}}" id="frmRegisterBook">
         <fieldset>

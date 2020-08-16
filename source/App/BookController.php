@@ -90,6 +90,7 @@ class BookController extends Controller
 
     public function create(): void
     {
+        Security::protect();
         $filters = [
             'title' => FILTER_SANITIZE_STRING,
             'slug' => FILTER_SANITIZE_STRING,
@@ -139,6 +140,7 @@ class BookController extends Controller
 
     public function update($bookId = 0): void
     {
+        Security::protect();
         $bookId = $this->validateParamId($bookId);
 
         $filters = [
@@ -189,6 +191,7 @@ class BookController extends Controller
     
     public function updateThumb($bookId = 0): void 
     {
+        Security::protect();
         $bookId = $this->validateParamId($bookId);
         $book = (new BookDB)->getThumbById($bookId, Session::getValue('id'));
 
@@ -219,7 +222,7 @@ class BookController extends Controller
         redirect(BASE . 'book/thumb/' . $bookId);
     } 
 
-    public function validate(Book $book, bool $validateId = false): array
+    private function validate(Book $book, bool $validateId = false): array
     {
         $errors = [];
 
@@ -247,7 +250,7 @@ class BookController extends Controller
         return $errors;
     }
 
-    public function validateParamId($bookId): int
+    private function validateParamId($bookId): int
     {
         if ($bookId === []) 
             echo $this->error('Book id invalid!', [], 400, 'dashboard');

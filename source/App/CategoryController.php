@@ -3,6 +3,7 @@
 namespace Source\App;
 
 use Source\App\Controller;
+use Source\Business\BookDB;
 use Source\Classes\Security;
 use Source\Models\Category;
 use Source\Business\CategoryDB;
@@ -16,7 +17,30 @@ class CategoryController extends Controller
      */
     public function index(): void
     {
-        echo $this->view('client/category/main');
+        $categories = (new CategoryDB)->getAll();
+        echo $this->view('client/category/main', [
+            'categories' => $categories,
+        ]);
+    }
+
+    /**
+     * Render the Category Page
+     *
+     * @return void
+     */
+    public function see($slug): void
+    {
+        $slug = filter_var($slug[0], FILTER_SANITIZE_STRING);
+
+        $slug = strtolower($slug);
+
+        $books = (new BookDB)->getBookBySlug($slug);
+        $categoryName = (new CategoryDB)->getCategoryNameBySlug($slug);
+
+        echo $this->view('client/category/seeBooks', [
+            'booksArray' => arrayTree($books, 3),
+            'category' => $categoryName,
+        ]);
     }
 
     /**
@@ -139,7 +163,7 @@ class CategoryController extends Controller
      * @param  Category $category Category data to be validated
      * @return array
      */
-    public function validate(Category $category, bool $validateId = false): array 
+    private function validate(Category $category, bool $validateId = false): array 
     {
         $errors = [];
 
@@ -155,7 +179,7 @@ class CategoryController extends Controller
         return $errors;
     }
 
-    public function validateParamId($id): int
+    private function validateParamId($id): int
     {
         if ($id === []) 
             echo $this->error('Category id invalid!', [], 400, 'category');
