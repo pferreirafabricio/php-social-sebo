@@ -9,12 +9,12 @@ define('DATE_TIME', 'd/m/Y H:i:s');
 /**
  * The base directory of the project
  */
-define('BASE', '/php-socialSebo/');
+define('BASE', '/social-sebo/');
 
 /**
  * The directory for redirect unauthorizated access
  */
-define('SECURITY_REDIRECT', '/php-socialSebo/');
+define('SECURITY_REDIRECT', '/social-sebo/');
 
 /**
  * Number of indexes to remove
@@ -24,7 +24,7 @@ define('INDEXES_TO_REMOVE', 1);
 /**
  * The host of the project
  */
-define('HOST', 'http://localhost/php-socialSebo/');
+define('HOST', 'http://localhost/social-sebo/');
 
 /**
  * The host of the database
@@ -39,7 +39,7 @@ define('DB_USER', 'root');
 /**
  * The password for access database
  */
-define('DB_PASSWORD', 'cadeira12');
+define('DB_PASSWORD', '');
 
 /**
  * The schema name in database of the project
