@@ -75,10 +75,10 @@
                                 Edit
                             </div>
                         </a>
-                        <a href="{{BASE}}book/delete/{{book.id}}" class="btn btn-danger">
+                        <a href="{{BASE}}book/thumb/{{book.id}}" class="btn btn-info">
                             <div class="d-flex align-items-center">
-                                <i class="gg-trash-empty mr-2"></i>
-                                Remove
+                                <i class="gg-image mr-2"></i>
+                                Thumb
                             </div>
                         </a>
                     </td>

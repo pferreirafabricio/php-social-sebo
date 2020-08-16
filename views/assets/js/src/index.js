@@ -3,9 +3,11 @@ import {
   validateEmail,
   validatePassword,
   validateName,
+  validateFiles,
 } from './validations.min.js';
 
 function validateFields(field) {
+  console.log(field.files);
   function verifyErrors() {
     let foundErrors = false;
     for (const error in field.validity) {
@@ -21,7 +23,7 @@ function validateFields(field) {
         foundErrors = 'typeMismatch';
       } else if (field.type === 'text' && !validateName(field.value)) {
         foundErrors = 'typeMismatch';
-      } else if (field.type === 'textarea' && !validateSynopsis(field.value)) {
+      } else if (field.type === 'file' && !validateFiles(field.files)) {
         foundErrors = 'typeMismatch';
       }
     }
@@ -50,6 +52,10 @@ function validateFields(field) {
       select: {
         valueMissing: 'Please, select a value',
         typeMismatch: 'Please, select a valid value',
+      },
+      file: {
+        valueMissing: 'Please, select a file',
+        typeMismatch: 'Please, select a valid file',
       },
     };
 

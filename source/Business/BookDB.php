@@ -81,6 +81,22 @@ class BookDB extends BasePDO
         return $this->pdo->ExecuteNonQuery($sql, $params);
     }
 
+    public function updateThumb(string $thumbPath, int $bookId, int $userId): bool
+    {
+        $sql = 'UPDATE livro
+                   SET thumb = :thumb
+                 WHERE usuario_id = :userId
+                   AND id = :bookId';
+
+        $params = [
+            ':thumb' => $thumbPath,
+            ':userId' => $userId,
+            ':bookId' => $bookId,
+        ];
+
+        return $this->pdo->ExecuteNonQuery($sql, $params);
+    }
+
     public function getBookByUserId(int $userId): array
     {
          $sql = "SELECT L.id,
@@ -135,6 +151,26 @@ class BookDB extends BasePDO
             return false;
 
         return $this->collection($dataReader);
+    }
+
+    public function getThumbById(int $bookId, int $userId)
+    {
+         $sql = "SELECT L.id, L.thumb
+                  FROM livro L
+                 WHERE L.usuario_id = :userId
+                   AND L.id = :bookId";
+
+        $params = [
+            ':bookId' => $bookId,
+            ':userId' => $userId,
+        ];
+        
+        $dataReader = $this->pdo->ExecuteQueryOneRow($sql, $params);
+
+        return (object) [
+            'thumb' => $dataReader['thumb'] ?? null,
+            'id' => $dataReader['id'] ?? null,
+        ];
     }
 
     private function collection($data): Book

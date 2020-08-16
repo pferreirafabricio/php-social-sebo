@@ -9,6 +9,7 @@ use Source\Classes\Security;
 use Source\Models\User;
 use Source\Models\Category;
 use Source\Classes\Session;
+use Source\Classes\Upload;
 use Source\Models\Book;
 
 class BookController extends Controller
@@ -68,6 +69,23 @@ class BookController extends Controller
 
         dd($slug);
         echo $this->view('client/book/see');
+    }
+    
+    public function thumb($bookId = 0): void
+    {
+        Security::protect();
+        $bookId = $this->validateParamId($bookId);
+        $book = (new BookDB)->getThumbById($bookId, Session::getValue('id'));
+
+        $thumPath = null;
+
+        if ($book->thumb != '' && $book->thumb != null) 
+            $thumPath = HOST . PUBLIC_IMAGE_PATH . $book->thumb;
+
+        echo $this->view('client/book/thumb', [
+            'bookId' => $bookId,
+            'thumbPath' => $thumPath,
+        ]);
     }
 
     public function create(): void
@@ -167,6 +185,38 @@ class BookController extends Controller
         }
 
         redirect(BASE . 'book/edit/' . $bookId);
+    }
+    
+    public function updateThumb($bookId = 0): void 
+    {
+        $bookId = $this->validateParamId($bookId);
+        $book = (new BookDB)->getThumbById($bookId, Session::getValue('id'));
+
+        if ($book->id == null || $book->id <= 0) 
+            echo $this->error('Book not found!', [], 404, 'book/thumb');
+
+        $validFile = Upload::validateFiles($_FILES, 1);
+
+        if (!$validFile) 
+            echo $this->error('File sent is not valid!', [], 404, 'book/thumb');
+        
+        $filename = Upload::upload($_FILES['thumb']);
+
+        if (!$filename) 
+            echo $this->error('Oops! Error in upload thumb!', [
+                "Something was wrong on upload the image, please try again in 5 minutes"
+            ], 500, 'dashboard');
+
+        if (!(new BookDB)->updateThumb($filename, $bookId, Session::getValue('id')))  {
+            unlink(PUBLIC_IMAGE_PATH . $filename);
+            echo $this->error('Oops! Error in update thumb!', [
+                "Something was wrong on update the thumb of the book, please try again in 5 minutes"
+            ], 500, 'dashboard');
+        }
+            
+        unlink(PUBLIC_IMAGE_PATH . $book->thumb);
+        
+        redirect(BASE . 'book/thumb/' . $bookId);
     } 
 
     public function validate(Book $book, bool $validateId = false): array
@@ -200,12 +250,12 @@ class BookController extends Controller
     public function validateParamId($bookId): int
     {
         if ($bookId === []) 
-            echo $this->error('Book id invalid!', [], 400, 'category');
+            echo $this->error('Book id invalid!', [], 400, 'dashboard');
 
         $bookId = filter_var($bookId[0], FILTER_SANITIZE_NUMBER_INT);
 
         if ($bookId <= 0) 
-            echo $this->error('Book id invalid!', [], 400, 'category');
+            echo $this->error('Book id invalid!', [], 400, 'dashboard');
 
         return $bookId;
     }

@@ -1,4 +1,4 @@
-<?php 
+<?php
 date_default_timezone_set('America/Sao_Paulo');
 
 /**
@@ -45,3 +45,24 @@ define('DB_PASSWORD', 'cadeira12');
  * The schema name in database of the project
  */
 define('DB_SCHEMA', 'social-sebo');
+
+/**
+ * Max size for upload a file
+ */
+define('MAX_UPLOAD_SIZE', 50);
+
+/**
+ * Max size for upload a file
+ */
+define('MIME_TYPES_UPLOAD', [
+    'image/jpg',
+    'image/jpeg',
+    'image/png',
+    'image/gif',
+]);
+
+/**
+ * Path for saving public images
+ */
+define('PUBLIC_IMAGE_PATH', 'resources/thumbs/');
+
