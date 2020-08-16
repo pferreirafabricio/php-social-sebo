@@ -1,5 +1,5 @@
 <h5 align="center">
-  <img src="./projectImages/logo.png" width="150px" /><br>
+  <img src="./docs/Design/logo-social-sebo.png" width="150px" /><br>
   <b>Sell and Share your books!</b> :books:
 </h5>
 <p align="center">
@@ -8,10 +8,10 @@
 
 ## :eyes: Overview 
 <div>
- <img src="./projectImages/home.png" width="auto" height="550px"/>
- <img src="./projectImages/seeBook.png" width="auto" height="550px"/>
- <img src="./projectImages/dashboard.png" width="auto" height="550px"/>
- <img src="./projectImages/login.png" width="auto" height="550px"/>
+ <img src="./docs/screenshots/home.png" width="auto" height="500px"/>
+ <img src="./docs/screenshots/seeBook.png" width="auto" height="500px"/>
+ <img src="./docs/screenshots/dashboard.png" width="auto" height="500px"/>
+ <img src="./docs/screenshots/login.png" width="auto" height="500px"/>
 </div>
 
 ## :open_book: About 
@@ -26,6 +26,7 @@ This project was developed in [SatellaSoft's Bootcamp](https://academy.satellaso
 - [MySQL](https://www.mysql.com)
 - [Grunt](https://gruntjs.com)
 - [Bootswatch Lux Theme](https://bootswatch.com/lux/)
+- [CSS GG](https://css.gg)
 
 ## :running_man: Installing and Running  
  1. Clone this repository ```git clone https://github.com/pferreirafabricio/php-socialSebo.git```;
