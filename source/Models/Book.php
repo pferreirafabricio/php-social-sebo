@@ -42,17 +42,17 @@ class Book
         $this->user = $user ?? new User();
     }
 
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
 
-    public function getTitle(): string
+    public function getTitle()
     {
         return $this->title;
     }
 
-    public function getSlug(): string
+    public function getSlug()
     {
         $slug = $this->slug;
         $slug = trim($slug);
@@ -63,37 +63,37 @@ class Book
         
         return $slug;
     }
-    public function getPrice(): float
+    public function getPrice()
     {
         return $this->price;
     }
 
-    public function getThumb(): string
+    public function getThumb()
     {
         return $this->thumb;
     }
 
-    public function getSynopsis(): string
+    public function getSynopsis()
     {
         return $this->synopsis;
     }
 
-    public function getCreatedAt(): string
+    public function getCreatedAt()
     {
         return $this->created_at;
     }
 
-    public function getStatus(): int
+    public function getStatus()
     {
         return $this->status;
     }
 
-    public function getCategory(): Category
+    public function getCategory()
     {
         return $this->category;
     }
 
-    public function getUser(): User
+    public function getUser()
     {
         return $this->user;
     }

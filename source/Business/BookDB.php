@@ -157,9 +157,7 @@ class BookDB extends BasePDO
     {
          $sql = "SELECT L.slug,
                         L.titulo AS title,
-                        L.thumb,
-                        L.valor  AS price,
-                        L.sinopse AS synopsis
+                        L.thumb
                   FROM livro L
                  INNER JOIN categoria CAT
                     ON CAT.id = L.categoria_id
@@ -180,6 +178,32 @@ class BookDB extends BasePDO
             $books[] = $this->collection($book);
 
         return $books;
+    }
+
+    public function getBookByBookSlug(string $slug): Book
+    {
+         $sql = "SELECT L.slug,
+                        L.titulo AS title,
+                        L.thumb,
+                        L.valor  AS price,
+                        L.sinopse AS synopsis,
+                        L.data_cadastro AS created_at,
+                        USR.nome AS user_name
+                  FROM livro L
+                 INNER JOIN usuario USR
+                    ON USR.id = L.usuario_id
+                 WHERE LOWER(L.slug) = :slug
+                   AND L.status = :status
+                 ORDER BY L.titulo ASC";
+
+        $params = [
+            ':slug' => $slug,
+            ':status' => 1
+        ];
+        
+        $dataReader = $this->pdo->ExecuteQueryOneRow($sql, $params);
+
+        return $this->collection($dataReader);
     }
 
     public function getThumbById(int $bookId, int $userId)
@@ -208,9 +232,9 @@ class BookDB extends BasePDO
             $data['id'] ?? null,
             $data['title'] ?? null,
             $data['slug'] ?? null,
-            $data['price'] ?? null,
+            number_format($data['price'], 2) ?? null,
             $data['thumb'] ?? null,
-            $data['synopsis'] ?? null,
+            html_entity_decode($data['synopsis']) ?? null,
             $data['created_at'] ?? null,
             $data['status'] ?? null,
             new Category(
@@ -219,7 +243,7 @@ class BookDB extends BasePDO
             ),
             new User(
                 $data['usuario_id'] ?? null,
-                $data['usuario_nome'] ?? null
+                $data['user_name'] ?? null
             )
         );
     }

@@ -67,8 +67,15 @@ class BookController extends Controller
     {
         $slug = filter_var($slug[0], FILTER_SANITIZE_STRING);
 
-        dd($slug);
-        echo $this->view('client/book/see');
+        $book = (new BookDB)->getBookByBookSlug($slug);
+
+        if ($book->getTitle() == null) 
+            echo $this->error('The book was not found!', [], 404, 'book');
+
+           // dd($book);
+        echo $this->view('client/book/see', [
+            'book' => $book,
+        ]);
     }
     
     public function thumb($bookId = 0): void
