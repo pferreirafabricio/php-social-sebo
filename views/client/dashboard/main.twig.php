@@ -66,19 +66,25 @@
                         {{book.category.name}}
                     </td>
                     <td>
-                        {{book.created_at}}
+                        {{book.createdAt | date(DATE_TIME)}}
                     </td>
                     <td class="p-2">
-                        <a href="{{BASE}}book/edit/{{book.id}}" class="btn btn-warning text-black-50">
+                        <a 
+                            href="{{BASE}}book/edit/{{book.id}}" 
+                            class="btn btn-warning text-black-50" 
+                            title="Edit book"
+                        >
                             <div class="d-flex align-items-center">
-                                <i class="gg-edit-markup mr-2"></i>
-                                Edit
+                                <i class="gg-edit-markup"></i>
                             </div>
                         </a>
-                        <a href="{{BASE}}book/thumb/{{book.id}}" class="btn btn-info">
-                            <div class="d-flex align-items-center">
-                                <i class="gg-image mr-2"></i>
-                                Thumb
+                        <a 
+                            href="{{BASE}}book/thumb/{{book.id}}" 
+                            class="btn btn-info" 
+                            title="Edit thumb"
+                        >
+                            <div class="d-flex align-items-center pl-1">
+                                <i class="gg-image"></i>
                             </div>
                         </a>
                     </td>

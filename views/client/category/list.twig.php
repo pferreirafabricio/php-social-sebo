@@ -46,12 +46,6 @@
                                 Edit
                             </div>
                         </a>
-                        <a href="{{BASE}}category/delete/{{category.id}}" class="btn btn-danger">
-                            <div class="d-flex align-items-center">
-                                <i class="gg-trash-empty mr-2"></i>
-                                Remove
-                            </div>
-                        </a>
                     </td>
                 </tr>
                 {% endfor %}

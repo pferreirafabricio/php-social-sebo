@@ -5,10 +5,10 @@
 <div>
     <h1>New category</h1>
 
-    <a href="{{BASE}}category" class="btn btn-success mb-5 mt-3">
+    <a href="{{BASE}}category/list" class="btn btn-success mb-5 mt-3">
         <div class="d-flex align-items-center">
             <i class="gg-arrow-left-o mr-3"></i>
-            Back to categories
+            Back to categories list
         </div>
     </a>
 

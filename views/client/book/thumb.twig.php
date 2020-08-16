@@ -25,7 +25,7 @@
                 </div>  
                 <div class="form-group col-12 col-md-6">
                     <label class="form-control-label" for="thumb">
-                        Thumb {{bookId}}
+                        Thumb
                     </label>
                     <input 
                         type="file" 

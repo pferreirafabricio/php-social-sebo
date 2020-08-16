@@ -21,19 +21,8 @@
                     <a class="nav-link" href="{{BASE}}dashboard/">Dashboard</a>
                 </li>
                 {% endif %}
-                <li class="nav-item dropdown-list">
-                    <a class="nav-link dropdown-toggle" href="{{BASE}}category/">Categories</a>
-                    <div class="actions">
-                        <a class="action-item no-text-decoration" href="{{BASE}}category/see/horror">
-                            Horror
-                        </a>
-                        <a class="action-item no-text-decoration" href="{{BASE}}category/see/heroes">
-                            Heroes
-                        </a>
-                        <a class="action-item no-text-decoration" href="{{BASE}}category/see/terror">
-                           Terror
-                        </a>
-                    </div>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{BASE}}category/">Categories</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{BASE}}about/">About us</a>

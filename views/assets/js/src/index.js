@@ -7,7 +7,6 @@ import {
 } from './validations.min.js';
 
 function validateFields(field) {
-  console.log(field.files);
   function verifyErrors() {
     let foundErrors = false;
     for (const error in field.validity) {

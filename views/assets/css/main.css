@@ -20,9 +20,12 @@
     --purple: #5F3BFF;
     --white: azure;
 }
+html, body {
+    height: 100%;
+}
 
 body {
-    font-family: 'Ubuntu', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Ubuntu', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;;
 }
 
 .no-text-decoration {

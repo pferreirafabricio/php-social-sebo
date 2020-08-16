@@ -6,6 +6,7 @@
     <h1>Home</h1>
     <hr />
     <h2>Last books</h2>
+    {% if booksArray != [] %}
     {% for books in booksArray %}
         <div class="row my-3">
             {% for book in books %}
@@ -37,5 +38,8 @@
             {% endfor %}
         </div>
     {% endfor %}
+    {% else %}
+    <p>Any books yet</p>
+    {% endif %}
 </div>
 {% endblock %}

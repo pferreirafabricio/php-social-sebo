@@ -4,6 +4,7 @@
 {% block body %}
 <div>
     <h1>{{category.name}}</h1>
+    {% if booksArray != [] %}
     {% for books in booksArray %}
         <div class="row my-3">
             {% for book in books %}
@@ -34,5 +35,8 @@
             {% endfor %}
         </div>
     {% endfor %}
+    {% else %}
+    <p>Any books with this category yet</p>
+    {% endif %}
 </div>
 {% endblock %}

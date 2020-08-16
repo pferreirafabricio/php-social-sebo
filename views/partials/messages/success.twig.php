@@ -1,5 +1,7 @@
 {% extends 'partials/main.twig.php' %}
 
+{% block title %}Success{% endblock %}
+
 {% block body %}
 <div class="jumbotron">
     <div class="text-center">
