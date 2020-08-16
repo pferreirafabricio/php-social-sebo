@@ -15,7 +15,7 @@
             {% else %}
             <img 
                 class="img-fluid" 
-                src="{{HOST}}assets/img/default-book-thumb.svg" 
+                src="{{HOST}}assets/img/default-book-thumb.jpg" 
                 alt="Thumb of the book {{book.title}}"
                 title="Thumb of the book {{book.title}}"
             >
@@ -38,14 +38,39 @@
             
             <hr class="my-2" />
 
-            <h3>Comments</h3>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                Sit eum quae maxime asperiores earum blanditiis corrupti 
-                assumenda, odit ut expedita qui provident! Consequatur 
-                architecto excepturi nihil sit. Neque, laborum odio?
-            </p>
+            <input type="hidden" id="bookId" value="{{book.id}}">
+            {% if userName != null %}
+            <form class="mb-3" action="{{BASE}}comment/" method="POST" id="frmCommentBook">
+                <label class="form-control-label font-weight-bold" for="comment">
+                    Leave your comment about this book
+                </label>
+                <textarea 
+                    class="form-control" 
+                    id="comment"
+                    name="comment"
+                    rows="4"
+                    maxlength="500"
+                    onkeyup="countCharacters(this, 'count-characters', 500)"
+                    placeholder="Type your comment about this book"
+                ></textarea>
+                <span class="invalid-feedback"></span>
+                <div class="text-right">
+                    <span id="count-characters" class="float-left mt-2">
+                        500 characters available
+                    </span>
+                    <button id="btnComment" class="btn btn-primary mt-2 btn-sm" type="submit">
+                        Comment
+                    </button>
+                </div>
+            </form>
+            {% endif %}
+            <div id="bookComments">
+            </div>
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{BASE}}assets/js/min/comment.min.js"></script>
 {% endblock %}

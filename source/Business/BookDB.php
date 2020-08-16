@@ -182,7 +182,8 @@ class BookDB extends BasePDO
 
     public function getBookByBookSlug(string $slug): Book
     {
-         $sql = "SELECT L.slug,
+         $sql = "SELECT L.id,
+                        L.slug,
                         L.titulo AS title,
                         L.thumb,
                         L.valor  AS price,
@@ -226,15 +227,41 @@ class BookDB extends BasePDO
         ];
     }
 
+    public function getLastsBooks(int $quantity = 12): array
+    {
+         $sql = "SELECT L.slug,
+                        L.titulo AS title,
+                        L.thumb,
+                        L.valor AS price
+                  FROM livro L
+                 WHERE L.status = :status
+                 ORDER BY L.data_cadastro DESC
+                 LIMIT :quantity";
+
+        $params = [
+            ':quantity' => $quantity,
+            ':status' => 1
+        ];
+        
+        $dataReader = $this->pdo->ExecuteQuery($sql, $params);
+
+        $books = [];
+        
+        foreach ($dataReader as $book) 
+            $books[] = $this->collection($book);
+
+        return $books;
+    }
+
     private function collection($data): Book
     {
         return new Book(
             $data['id'] ?? null,
             $data['title'] ?? null,
             $data['slug'] ?? null,
-            number_format($data['price'], 2) ?? null,
+            $data['price'] ?? null,
             $data['thumb'] ?? null,
-            html_entity_decode($data['synopsis']) ?? null,
+            html_entity_decode($data['synopsis'] ?? null),
             $data['created_at'] ?? null,
             $data['status'] ?? null,
             new Category(

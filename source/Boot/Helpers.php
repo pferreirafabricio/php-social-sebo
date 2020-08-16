@@ -98,3 +98,9 @@ function arrayTree(array $array, int $maxColumns = 4): array
 
     return $newArray;
 }
+
+function responseJson($data)
+{
+    header('Content-type: application/json;charset=utf-8');
+    echo json_encode($data);
+}

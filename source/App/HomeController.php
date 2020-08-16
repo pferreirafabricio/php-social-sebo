@@ -2,6 +2,7 @@
 
 namespace Source\App;
 use Source\App\Controller;
+use Source\Business\BookDB;
 
 class HomeController extends Controller
 {    
@@ -12,6 +13,10 @@ class HomeController extends Controller
      */
     public function index(): void
     {
-        echo $this->view('client/home');
+        $books = (new BookDB)->getLastsBooks();
+    
+        echo $this->view('client/home', [
+            'booksArray' => arrayTree($books, 3),
+        ]);
     }
 }

@@ -70,9 +70,8 @@ class BookController extends Controller
         $book = (new BookDB)->getBookByBookSlug($slug);
 
         if ($book->getTitle() == null) 
-            echo $this->error('The book was not found!', [], 404, 'book');
+            echo $this->error('The book was not found!', [], 404);
 
-           // dd($book);
         echo $this->view('client/book/see', [
             'book' => $book,
         ]);

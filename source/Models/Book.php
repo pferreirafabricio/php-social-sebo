@@ -22,7 +22,7 @@ class Book
         $id = null,
         string $title = null,
         string $slug = null,
-        int $price = null,
+        float $price = null,
         string $thumb = null,
         string $synopsis = null,
         string $created_at = null,

@@ -19,6 +19,7 @@
     
     {% include 'partials/footer.twig.php' %}
     
+    <input type="hidden" id="baseUrl" value="{{BASE}}">
     <script type="module" src="{{BASE}}assets/js/min/index.min.js"></script>
     {% block scripts %}{% endblock %}
 </body>
