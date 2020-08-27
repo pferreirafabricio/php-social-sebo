@@ -15,7 +15,9 @@
 </div>
 
 ## :open_book: About 
-This project is a simple plataform to sell and share books. You can register and edit books (and their thumbnails), leave comments in the books that you love :heart:, manage categories and so on. <br /><br />
+This project is a simple plataform to sell and share books. You can register and edit books (and their thumbnails), leave comments in the books that you love :heart:, manage categories and so on.<br />
+Checkout the others projects of the bootcamp [here](https://github.com/pferreirafabricio/bootcamp-satellaSoft).
+<br /><br />
 <img align="left" src="https://satellasoft.com/img/logo/satellasoft-gradient.svg" width="300px" />
 This project was developed in [SatellaSoft's Bootcamp](https://academy.satellasoft.com/course/v/bootcamp-desenvolvimento-web) as the final project.
 <br /><br /><br /><br />
@@ -27,6 +29,8 @@ This project was developed in [SatellaSoft's Bootcamp](https://academy.satellaso
 - [Grunt](https://gruntjs.com)
 - [Bootswatch Lux Theme](https://bootswatch.com/lux/)
 - [CSS GG](https://css.gg)
+- [Editor Config](https://editorconfig.org)
+- [ESLint](https://eslint.org)
 
 ## :running_man: Installing and Running  
  1. Clone this repository ```git clone https://github.com/pferreirafabricio/php-socialSebo.git```;
