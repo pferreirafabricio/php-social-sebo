@@ -2,4 +2,6 @@
 composer.lock
 package-lock.json
 /node_modules/
-views/resources/thumbs/*
+views/resources/thumbs/*.png
+views/resources/thumbs/*.jpg
+views/resources/thumbs/*.jpeg
